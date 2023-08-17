@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CheckTools scale="10000/50000/100000/250000/500000/1000000">
+  <Tool name="微短要素检查" fn="Check_MicroGeo" lenThreshold="0.1" areaThreshold="1.0">
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+    <CheckItem fcName ="HYDA"/>
+    <CheckItem fcName ="HFCA"/>
+    <CheckItem fcName ="RESA"/>
+  </Tool>
+  <Tool name="不闭合面检查" fn="Check_PolygonClose">
+    <CheckItem fcName ="HYDA"/>
+    <CheckItem fcName ="HFCA"/>
+    <CheckItem fcName ="RESA"/>
+    <CheckItem fcName ="BOUA2"/>
+    <CheckItem fcName ="BOUA4"/>
+    <CheckItem fcName ="BOUA5"/>
+    <CheckItem fcName ="BOUA6"/>
+  </Tool>
+  <Tool name="空几何检查" fn="Check_NullGeo">
+    <CheckItem fcName ="HYDP"/>
+    <CheckItem fcName ="HFCP"/>
+    <CheckItem fcName ="LFCP"/>
+    <CheckItem fcName ="AGNP"/>
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+    <CheckItem fcName ="HYDA"/>
+    <CheckItem fcName ="HFCA"/>
+    <CheckItem fcName ="RESA"/>
+    <CheckItem fcName ="BOUA2"/>
+    <CheckItem fcName ="BOUA4"/>
+    <CheckItem fcName ="BOUA5"/>
+    <CheckItem fcName ="BOUA6"/>
+  </Tool>
+  <Tool name="点重叠检查" fn="Check_PointOverlap">
+    <CheckItem fcName ="HYDP"/>
+    <CheckItem fcName ="HFCP"/>
+    <CheckItem fcName ="LFCP"/>
+    <CheckItem fcName ="AGNP"/>
+  </Tool>
+  <Tool name="线重叠检查" fn="Check_LineOverlap">
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+  </Tool>
+  <Tool name="面重叠检查" fn="Check_AreaOverlap">
+    <CheckItem fcName ="HYDA"/>
+    <CheckItem fcName ="HFCA"/>
+    <CheckItem fcName ="RESA"/>
+    <CheckItem fcName ="BOUA2"/>
+    <CheckItem fcName ="BOUA4"/>
+    <CheckItem fcName ="BOUA5"/>
+    <CheckItem fcName ="BOUA6"/>
+  </Tool>
+  <Tool name="线落入面检查" fn="Check_LineFallintoPolygon">
+    <CheckItem fcName ="HYDL" filterString ="GB in (-1,-2)" groupName ="测试1">
+      <Param areaFCName ="RESA" filterString =""/>
+    </CheckItem>
+    <CheckItem fcName ="LRDL" filterString ="GB in (-1,-2)" groupName ="测试2">
+      <Param areaFCName ="RESA" filterString =""/>
+      <Param areaFCName ="HYDA" filterString =""/>
+    </CheckItem>
+  </Tool>
+  <Tool name="自相交检查" fn="Check_SelfIntersect">
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+  </Tool>
+  <Tool name="多部件检查" fn="Check_MutiPart">
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+    <CheckItem fcName ="HYDA"/>
+    <CheckItem fcName ="HFCA"/>
+    <CheckItem fcName ="RESA"/>
+    <CheckItem fcName ="BOUA2"/>
+    <CheckItem fcName ="BOUA4"/>
+    <CheckItem fcName ="BOUA5"/>
+    <CheckItem fcName ="BOUA6"/>
+  </Tool>
+  <Tool name="面缝隙检查" fn="Check_PolygonGap">
+    <CheckItem fcName ="HYDA"/>
+    <CheckItem fcName ="BOUA2"/>
+    <CheckItem fcName ="BOUA4"/>
+    <CheckItem fcName ="BOUA5"/>
+    <CheckItem fcName ="BOUA6"/>
+  </Tool>
+  <Tool name="打褶线检查" fn="Check_WrinkleLine" angleThreshold="15.0" LenThreshold="1.0">
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+  </Tool>
+  <Tool name="字段值空格检查" fn="Check_FieldValueContainSpace">
+    <CheckItem fcName ="HYDP" fields="NAME"/>
+    <CheckItem fcName ="LFCP" fields="NAME"/>
+    <CheckItem fcName ="LRDL" fields="NAME/MATRL"/>
+    <CheckItem fcName ="LRRL" fields="NAME"/>
+    <CheckItem fcName ="HYDA" fields="NAME/WQL"/>
+  </Tool>
+  <Tool name="属性空值检查" fn="Check_FieldNullValue">
+    <CheckItem fcName ="HYDP" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="HFCP" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="LFCP" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="AGNP" fields="CLASS/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="HYDL" fields="GB/HGB/GRADE/GRADE2/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="HFCL" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="LRRL" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="LRDL" fields="GB/LGB/GRADE2/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="LFCL" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="BRGL" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="BOUL" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="HYDA" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="HFCA" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="RESA" fields="GB/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="BOUA2" fields="PAC/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="BOUA4" fields="PAC/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="BOUA5" fields="PAC/JSDXGUID/JSDXVERSION"/>
+    <CheckItem fcName ="BOUA6" fields="PAC/JSDXGUID/JSDXVERSION"/>
+  </Tool>
+  <Tool name="伪节点检查" fn="Check_Pseudo" tolerance="0.0001">
+    <CheckItem fcName ="HYDL" fields="GB/HYDC/NAME/HGB/GRADE/GRADE2"/>
+    <CheckItem fcName ="HFCL" fields="GB/NAME"/>
+    <CheckItem fcName ="LRRL" fields="GB/RN/NAME/TYPE"/>
+    <CheckItem fcName ="LRDL" fields="GB/RN/RN2/RDPAC/NAME/JC/RTEG/MATRL/LANE/SDTF/WIDTH/TYPE/PERIOD/LGB/CLASS1/GRADE2"/>
+    <CheckItem fcName ="LFCL" fields="GB/NAME/TYPE/WEIGHT/BRGLEV/LGB"/>
+  </Tool>
+  <Tool name="悬挂点检查" fn="Check_Tangle" tolerance="0.1">
+    <CheckItem fcName ="HYDL"/>
+    <CheckItem fcName ="HFCL"/>
+    <CheckItem fcName ="LRRL"/>
+    <CheckItem fcName ="LRDL"/>
+    <CheckItem fcName ="LFCL"/>
+    <CheckItem fcName ="BRGL"/>
+    <CheckItem fcName ="BOUL"/>
+  </Tool>
+  <Tool name="要素分层检查" fn="Check_FCFieldValue">
+  </Tool>
+  <Tool name="水系几何等级连通性检查" fn="Check_RiverGrade2Conn" fcName ="HYDL" fieldName="GRADE2" Grade="0/1/2/3/4/5/6/7/8">
+  </Tool>
+  <Tool name="道路Grade连通性检查" fn="Check_RoadGradeConn" fcName ="LRDL" fieldName="GRADE" Grade="1/2/3/4/5/6/7/8/9/10/11">
+  </Tool>
+
+</CheckTools>

@@ -1,0 +1,964 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E7D5543-D76A-4929-913C-375779BF03BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SMGI.Plugin.DCDProcess</RootNamespace>
+    <AssemblyName>SMGI.Plugin.DCDProcess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Release\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="clipper_library">
+      <HintPath>..\..\lib\Debug\clipper_library.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="ESRI.ArcGIS.3DAnalyst, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ADF, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.AnalysisTools, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.AxControls, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Carto, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.CartographyTools, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.CartoUI, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Catalog, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.CatalogUI, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Controls, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ConversionTools, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataManagementTools, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesFile, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesGDB, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesRaster, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Display, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DisplayUI, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.EditingTools, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Editor, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.EngineCore, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Framework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geodatabase, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.GeoDatabaseUI, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geometry, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geoprocessing, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geoprocessor, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.GlobeCore, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Output, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.OutputUI, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.SpatialAnalyst, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.SpatialAnalystTools, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.System, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.SystemUI, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.TrackingAnalyst, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Version, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="冲突处理\AGNPConflictMovingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="冲突处理\AGNPConflictMovingForm.designer.cs">
+      <DependentUpon>AGNPConflictMovingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="冲突处理\AGNPConflictMovingTool.cs" />
+    <Compile Include="冲突处理\CheckSymbolConflictCmd.cs" />
+    <Compile Include="冲突处理\CheckSymbolConflictForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="冲突处理\CheckSymbolConflictForm.designer.cs">
+      <DependentUpon>CheckSymbolConflictForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="地图综合\BuildingGenCmd.cs" />
+    <Compile Include="地图综合\FrmBuildingGen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="地图综合\FrmBuildingGen.designer.cs">
+      <DependentUpon>FrmBuildingGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="地图综合\GeneralizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="地图综合\GeneralizeForm.designer.cs">
+      <DependentUpon>GeneralizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="地图综合\PolygonGeneralizeTool.cs" />
+    <Compile Include="地图综合\PolylineGeneralizeTool.cs" />
+    <Compile Include="地图综合\TBGenHelper.cs" />
+    <Compile Include="宁夏\PointAdjust2LineCmd.cs" />
+    <Compile Include="宁夏\XFCLAdjust2XXXACmd.cs" />
+    <Compile Include="宁夏\XFCLAdjust2XXXLCmd.cs" />
+    <Compile Include="安徽\AGNPJCAHCmd.cs" />
+    <Compile Include="安徽\StruckRiverReClassifyCmd.cs" />
+    <Compile Include="安徽\StruckRiverReClassifyCmd2.cs" />
+    <Compile Include="安徽\沟渠直线型要素冲突处理\LinearDitchesFeatureDealCmd.cs" />
+    <Compile Include="安徽\沟渠直线型要素冲突处理\LinearDitchesFeatureDealForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="安徽\沟渠直线型要素冲突处理\LinearDitchesFeatureDealForm.designer.cs">
+      <DependentUpon>LinearDitchesFeatureDealForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="安徽\等级赋值\RoadGrade2Set.cs" />
+    <Compile Include="安徽\等级赋值\RoadRankSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="安徽\等级赋值\RoadRankSetForm.designer.cs">
+      <DependentUpon>RoadRankSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工具\DataBaseClipCmd2.cs" />
+    <Compile Include="数据整理\LineFeatureMatchCmd.cs" />
+    <Compile Include="数据整理\LineFeatureMatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\LineFeatureMatchForm.Designer.cs">
+      <DependentUpon>LineFeatureMatchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\PolylineEndPointProcessCmd.cs" />
+    <Compile Include="数据整理\PolylineEndPointProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\PolylineEndPointProcessForm.Designer.cs">
+      <DependentUpon>PolylineEndPointProcessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="编辑\CollabDelStatCancelCmd.cs" />
+    <Compile Include="安徽\WaterDataRankHYDCCmd.cs" />
+    <Compile Include="编辑\RelLineVSLine.cs" />
+    <Compile Include="右键菜单\CreateLayerBySelectionCmd.cs" />
+    <Compile Include="宁夏\AGNPJCNXCmd.cs" />
+    <Compile Include="工具\DataBaseClipCmd.cs" />
+    <Compile Include="工具\DataBaseClipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\DataBaseClipForm.designer.cs">
+      <DependentUpon>DataBaseClipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工具\DataBaseProjectCmd.cs" />
+    <Compile Include="工具\DataBaseProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\DataBaseProjectForm.Designer.cs">
+      <DependentUpon>DataBaseProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工具\SelectByLocationCmd.cs" />
+    <Compile Include="工具\SelectByLocationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\SelectByLocationForm.Designer.cs">
+      <DependentUpon>SelectByLocationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\HYDLTouchHYDA.cs" />
+    <Compile Include="数据整理\HYDLTouchHYDACmd.cs" />
+    <Compile Include="数据整理\LRDLTouchRESA.cs" />
+    <Compile Include="数据整理\LRDLTouchRESACmd.cs" />
+    <Compile Include="新疆\FeatureSimplifyTool.cs" />
+    <Compile Include="新疆\GradeListFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\GradeListFrm.Designer.cs">
+      <DependentUpon>GradeListFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\HYDLDataRankClass.cs" />
+    <Compile Include="新疆\质检\CheckLrdlResaCmd.cs" />
+    <Compile Include="新疆\质检\LineHeadClosedToLineChk.cs" />
+    <Compile Include="新疆\质检\LineHeadClosedToLineChkCmd.cs" />
+    <Compile Include="江苏\CreateUpperLevelRailwayTool.cs" />
+    <Compile Include="河北\AddCalcFieldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="河北\AddCalcFieldForm.designer.cs">
+      <DependentUpon>AddCalcFieldForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="河北\AddCalcFieldHebeiCmd.cs" />
+    <Compile Include="安徽\CityRoadReClassifyCmd.cs" />
+    <Compile Include="安徽\CityRoadReClassifyCmd2.cs" />
+    <Compile Include="编辑\AddFNForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="编辑\AddFNForm.Designer.cs">
+      <DependentUpon>AddFNForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="编辑\AttributeBrushOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="编辑\AttributeBrushOptionForm.Designer.cs">
+      <DependentUpon>AttributeBrushOptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="编辑\AttributeBrushTool.cs" />
+    <Compile Include="编辑\AttributeBrushToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="编辑\AttributeBrushToolForm.designer.cs">
+      <DependentUpon>AttributeBrushToolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="编辑\Lineextendedit.cs" />
+    <Compile Include="工具\DataMappingCmd.cs" />
+    <Compile Include="工具\DataMappingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\DataMappingForm.Designer.cs">
+      <DependentUpon>DataMappingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\FieldBackspaceBatCmd.cs" />
+    <Compile Include="右键菜单\NewGroupLayerCmd.cs" />
+    <Compile Include="湖南\AGNPJCHNCmd.cs" />
+    <Compile Include="湖南\SetYSMCCmd.cs" />
+    <Compile Include="编辑\CenterPolylineLine.cs" />
+    <Compile Include="工具\FrmMeasureResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\FrmMeasureResult.Designer.cs">
+      <DependentUpon>FrmMeasureResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\GeometryTopoSimplifyCmd.cs" />
+    <Compile Include="工具\MeasureTool.cs" />
+    <Compile Include="编辑\MultiPointLinkageTool.cs" />
+    <Compile Include="编辑\ReshapeFeature.cs" />
+    <Compile Include="编辑\ReshapePolyline.cs" />
+    <Compile Include="工具\SwitchTKCmd.cs" />
+    <Compile Include="工具\WorkspaceSymbolizationCmd.cs" />
+    <Compile Include="广西\质检\CheckRiverNameCheckCmd.cs" />
+    <Compile Include="广西\质检\CheckRiverNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="广西\质检\CheckRiverNameForm.designer.cs">
+      <DependentUpon>CheckRiverNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\CommonObjects.cs" />
+    <Compile Include="工具\DatabaseMergeCmd.cs" />
+    <Compile Include="工具\DatabaseMergeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\DatabaseMergeForm.Designer.cs">
+      <DependentUpon>DatabaseMergeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工具\DBFormatConversionCmd.cs" />
+    <Compile Include="工具\DBFormatConversionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\DBFormatConversionForm.designer.cs">
+      <DependentUpon>DBFormatConversionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\LayerSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\LayerSelectForm.Designer.cs">
+      <DependentUpon>LayerSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\RemoveOverlapNodeCmd.cs" />
+    <Compile Include="数据整理\RiverGBCmd.cs" />
+    <Compile Include="新疆\质检\GeoDatabaseHelper.cs" />
+    <Compile Include="新疆\质检\GeoDataRecordFileTopo.cs" />
+    <Compile Include="数据整理\PolygonUnion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\PolygonUnion.designer.cs">
+      <DependentUpon>PolygonUnion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\Process.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\Process.designer.cs">
+      <DependentUpon>Process.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\Progress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\Progress.designer.cs">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\TopoHelper.cs" />
+    <Compile Include="新疆\TxtRecordFile.cs" />
+    <Compile Include="新疆\DataRankHelper.cs" />
+    <Compile Include="新疆\FrmSimplify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\FrmSimplify.designer.cs">
+      <DependentUpon>FrmSimplify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\ShapeFileWriter.cs" />
+    <Compile Include="新疆\TextFileWriter.cs" />
+    <Compile Include="新疆\质检\FrmOutputDir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\FrmOutputDir.designer.cs">
+      <DependentUpon>FrmOutputDir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\OutputSetup.cs" />
+    <Compile Include="新疆\质检\CheckPolygonGap.cs" />
+    <Compile Include="新疆\质检\CheckPolygonGapCmd.cs" />
+    <Compile Include="新疆\质检\CheckPolygonGapFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\CheckPolygonGapFrm.designer.cs">
+      <DependentUpon>CheckPolygonGapFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\TangleCheck.cs" />
+    <Compile Include="广西\质检\CheckRoadDataRankClassCmd.cs" />
+    <Compile Include="广西\质检\CheckRoadDataRankClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="广西\质检\CheckRoadDataRankClassForm.Designer.cs">
+      <DependentUpon>CheckRoadDataRankClassForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="广西\质检\HFCLCatchHYDLCheckCmd.cs" />
+    <Compile Include="江苏\AGNPJCCmdJS.cs" />
+    <Compile Include="江苏\AGNPPinYinCmd.cs" />
+    <Compile Include="江苏\CreateUpperLevelRoadTool.cs" />
+    <Compile Include="数据整理\PseudoCmd.cs" />
+    <Compile Include="编辑\ReshapePolylineTail.cs" />
+    <Compile Include="编辑\VerticesToCenterTool.cs" />
+    <Compile Include="编辑\协同\cmdSplitPolygon.cs" />
+    <Compile Include="编辑\PasteCollaDataCmd.cs" />
+    <Compile Include="编辑\ReShapePolygons.cs" />
+    <Compile Include="数据整理\BOULConstructBOUA.cs" />
+    <Compile Include="数据整理\BOULConstructBOUACmd.cs" />
+    <Compile Include="数据整理\BOULConstructBOUAFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\BOULConstructBOUAFrm.Designer.cs">
+      <DependentUpon>BOULConstructBOUAFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\ClickAddPolygon.cs" />
+    <Compile Include="数据整理\ClickAddPolygonCmd.cs" />
+    <Compile Include="数据整理\FuseSmallHole.cs" />
+    <Compile Include="数据整理\FuseSmallHoleCmd.cs" />
+    <Compile Include="数据整理\GeneralizationPretreatmentCmd.cs" />
+    <Compile Include="数据整理\FuseSmallHoleFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\FuseSmallHoleFrm.Designer.cs">
+      <DependentUpon>FuseSmallHoleFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\GeneralizationPretreatmentFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\GeneralizationPretreatmentFrm.Designer.cs">
+      <DependentUpon>GeneralizationPretreatmentFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="地图综合\PolygonGeneralizeCmd.cs" />
+    <Compile Include="新疆\质检\CheckIsolatedRiverCmd.cs" />
+    <Compile Include="新疆\质检\CheckIsolatedRiverFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\CheckIsolatedRiverFrm.Designer.cs">
+      <DependentUpon>CheckIsolatedRiverFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\CheckRiverStructCmd.cs" />
+    <Compile Include="新疆\质检\CheckRiverStructFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\CheckRiverStructFrm.Designer.cs">
+      <DependentUpon>CheckRiverStructFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\CheckRiverStructHGBCmd.cs" />
+    <Compile Include="新疆\质检\TopoPointRelationCheck.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\TopoPointRelationcmd.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="江苏\AGNPPriorityCmdJS.cs" />
+    <Compile Include="江苏\DirectionPointAdjustmentCmd.cs" />
+    <Compile Include="江苏\PinYinConvert.cs" />
+    <Compile Include="江苏\PolygonGapAdjustmentCmd.cs" />
+    <Compile Include="江苏\RoadClass1CmdJS.cs" />
+    <Compile Include="江苏\SelectInterFeatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="江苏\SelectInterFeatureForm.Designer.cs">
+      <DependentUpon>SelectInterFeatureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="江苏\质检\CheckGraphicConflictCmdJS.cs" />
+    <Compile Include="江苏\质检\CheckGraphicConflictFormJS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="江苏\质检\CheckGraphicConflictFormJS.Designer.cs">
+      <DependentUpon>CheckGraphicConflictFormJS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="江苏\质检\CheckPolygonWidthCmdJS.cs" />
+    <Compile Include="江苏\质检\CheckPolygonWidthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="江苏\质检\CheckPolygonWidthForm.Designer.cs">
+      <DependentUpon>CheckPolygonWidthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="江苏\PolygonGapAdjustmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="江苏\PolygonGapAdjustmentForm.Designer.cs">
+      <DependentUpon>PolygonGapAdjustmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="编辑\EntitySelectTool.cs" />
+    <Compile Include="编辑\EntitySelectFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="编辑\EntitySelectFrm.Designer.cs">
+      <DependentUpon>EntitySelectFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="地图综合\PolylineGeneralizeCmd.cs" />
+    <Compile Include="新疆\质检\CulvertCheckClass.cs" />
+    <Compile Include="新疆\质检\RiverGrade2ConnChk.cs" />
+    <Compile Include="新疆\质检\RiverGrade2ConnChkCmd.cs" />
+    <Compile Include="新疆\质检\RiverGrade2ConnChkFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\RiverGrade2ConnChkFrm.Designer.cs">
+      <DependentUpon>RiverGrade2ConnChkFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\RoadGradeConnChk.cs" />
+    <Compile Include="新疆\质检\RoadGradeConnChkFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\RoadGradeConnChkFrm.Designer.cs">
+      <DependentUpon>RoadGradeConnChkFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\RoadGradeConnChkCmd.cs" />
+    <Compile Include="新疆\FeatureSimplifyCmd.cs" />
+    <Compile Include="编辑\EndsAdjustTool.cs" />
+    <Compile Include="数据整理\DangleProcessCmd.cs" />
+    <Compile Include="数据整理\FieldBackspaceCmd.cs" />
+    <Compile Include="数据整理\FrmBackspace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\FrmBackspace.Designer.cs">
+      <DependentUpon>FrmBackspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="工具\SnapEnvConfigCmd.cs" />
+    <Compile Include="工具\SnapEnvConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="工具\SnapEnvConfigForm.Designer.cs">
+      <DependentUpon>SnapEnvConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="湖南\质检\CheckLFCL2RoadRegisterHNCmd.cs" />
+    <Compile Include="湖南\质检\CheckLineOverlapLineCmd.cs" />
+    <Compile Include="湖南\质检\CheckShengPiZiCmd.cs" />
+    <Compile Include="湖南\质检\TopoPointRelationHNCheck.cs" />
+    <Compile Include="湖南\质检\TopoPointRelationHNcmd.cs" />
+    <Compile Include="编辑\协同\CustPolygonTool.cs" />
+    <Compile Include="质检\CheckAreaBoundaryCoveredByAreaBoundaryCmd.cs" />
+    <Compile Include="质检\CheckCollabGUIDUniquenessCmd.cs" />
+    <Compile Include="质检\CheckFCFieldValueCmd.cs" />
+    <Compile Include="质检\CheckFieldNullValueCmd.cs" />
+    <Compile Include="质检\CheckFieldValueContainSpaceCmd.cs" />
+    <Compile Include="冲突处理\CheckGraphicConflict.cs" />
+    <Compile Include="冲突处理\CheckGraphicConflictCmd.cs" />
+    <Compile Include="冲突处理\CheckGraphicConflictForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="冲突处理\CheckGraphicConflictForm.designer.cs">
+      <DependentUpon>CheckGraphicConflictForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckLayerWithFieldsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckLayerWithFieldsForm.Designer.cs">
+      <DependentUpon>CheckLayerWithFieldsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckLineFallintoPolygonCmd.cs" />
+    <Compile Include="质检\CheckLineFallintoPolygonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckLineFallintoPolygonForm.Designer.cs">
+      <DependentUpon>CheckLineFallintoPolygonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckMicroGeoCmd.cs" />
+    <Compile Include="质检\CheckMicroGeoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckMicroGeoForm.designer.cs">
+      <DependentUpon>CheckMicroGeoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckMultipartCmd.cs" />
+    <Compile Include="质检\CheckNewCollabGUIDCmd.cs" />
+    <Compile Include="质检\CheckNewCollabGUIDForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckNewCollabGUIDForm.Designer.cs">
+      <DependentUpon>CheckNewCollabGUIDForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckNoAreaOverlapCmd.cs" />
+    <Compile Include="质检\CheckDataBaseStructCmd.cs" />
+    <Compile Include="质检\CheckDataBaseStructForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckDataBaseStructForm.Designer.cs">
+      <DependentUpon>CheckDataBaseStructForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckHelper.cs" />
+    <Compile Include="编辑\协同\CmdUpdateDataFilter.cs" />
+    <Compile Include="编辑\协同\CmdMultiToSingle.cs" />
+    <Compile Include="编辑\协同\cmdUpdateRecord.cs" />
+    <Compile Include="编辑\协同\FeatureCutTool.cs" />
+    <Compile Include="编辑\协同\FeatureSplitTool.cs" />
+    <Compile Include="编辑\协同\LineBreakTool.cs" />
+    <Compile Include="数据整理\StRoadLGBCmd.cs" />
+    <Compile Include="新疆\LakeDataRankClass.cs" />
+    <Compile Include="新疆\LGBAssignment.cs" />
+    <Compile Include="数据整理\RoadLGBSetCmd.cs" />
+    <Compile Include="新疆\RiverDataRankClass.cs" />
+    <Compile Include="新疆\RoadDataRankClass.cs" />
+    <Compile Include="新疆\质检\LayerSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\LayerSelectForm.Designer.cs">
+      <DependentUpon>LayerSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新疆\质检\LayerSelectWithFiedsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新疆\质检\LayerSelectWithFiedsForm.Designer.cs">
+      <DependentUpon>LayerSelectWithFiedsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="右键菜单\ExportLayerFileCmd.cs" />
+    <Compile Include="数据整理\FrmRiverClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="数据整理\FrmRiverClass.Designer.cs">
+      <DependentUpon>FrmRiverClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="数据整理\RiverClassCmd.cs" />
+    <Compile Include="数据整理\PolygonUnionCmd.cs" />
+    <Compile Include="DCDHelper.cs" />
+    <Compile Include="编辑\协同\IntersectLineBreakCmd.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="右键菜单\AttributeTableOpenCmd.cs" />
+    <Compile Include="右键菜单\LayerProperty.cs" />
+    <Compile Include="右键菜单\LayerLabelSet.cs" />
+    <Compile Include="右键菜单\LayerLabelSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="右键菜单\LayerLabelSetForm.Designer.cs">
+      <DependentUpon>LayerLabelSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="右键菜单\LayerOnlySelect.cs" />
+    <Compile Include="右键菜单\LayerRemove.cs" />
+    <Compile Include="右键菜单\LayerSelectableManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="右键菜单\LayerSelectableManageForm.Designer.cs">
+      <DependentUpon>LayerSelectableManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="右键菜单\LayerSlectableManage.cs" />
+    <Compile Include="右键菜单\MapDoActive.cs" />
+    <Compile Include="右键菜单\RecalFullExtent.cs" />
+    <Compile Include="右键菜单\ReferenceScaleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="右键菜单\ReferenceScaleDialog.Designer.cs">
+      <DependentUpon>ReferenceScaleDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="右键菜单\ReferenceScaleScaleSetCmd.cs" />
+    <Compile Include="质检\CheckHFCL2RoadRegisterCmd.cs" />
+    <Compile Include="质检\CheckLayerSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckLayerSelectForm.Designer.cs">
+      <DependentUpon>CheckLayerSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckLFCL2RoadRegisterCmd.cs" />
+    <Compile Include="质检\CheckLineCoveredByAreaBoundaryCmd.cs" />
+    <Compile Include="质检\CheckNoLineCrossCmd.cs" />
+    <Compile Include="质检\CheckNoLineOverlapCmd.cs" />
+    <Compile Include="质检\CheckNoPointOverlapCmd.cs" />
+    <Compile Include="质检\CheckNullGeoCmd.cs" />
+    <Compile Include="质检\CheckPolygonCloseCmd.cs" />
+    <Compile Include="质检\CheckPropertiesConsistencyCmd.cs" />
+    <Compile Include="质检\CheckPropertiesConsistencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckPropertiesConsistencyForm.Designer.cs">
+      <DependentUpon>CheckPropertiesConsistencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckPropertiesConsistencyOfSameFeatureCmd.cs" />
+    <Compile Include="质检\CheckPseudoCmd.cs" />
+    <Compile Include="质检\CheckRiverDirectionCmd.cs" />
+    <Compile Include="质检\CheckSamePlaceNameCmd.cs" />
+    <Compile Include="质检\CheckSamePlaceNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckSamePlaceNameForm.Designer.cs">
+      <DependentUpon>CheckSamePlaceNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckSelfIntersectCmd.cs" />
+    <Compile Include="质检\CheckWrinkleLineCmd.cs" />
+    <Compile Include="质检\CheckWrinkleLineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckWrinkleLineForm.designer.cs">
+      <DependentUpon>CheckWrinkleLineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="质检\CheckPropertiesConsistencyOfSameFeatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="质检\CheckPropertiesConsistencyOfSameFeatureForm.Designer.cs">
+      <DependentUpon>CheckPropertiesConsistencyOfSameFeatureForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="冲突处理\AGNPConflictMovingForm.resx">
+      <DependentUpon>AGNPConflictMovingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="冲突处理\CheckSymbolConflictForm.resx">
+      <DependentUpon>CheckSymbolConflictForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="地图综合\FrmBuildingGen.resx">
+      <DependentUpon>FrmBuildingGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="安徽\沟渠直线型要素冲突处理\LinearDitchesFeatureDealForm.resx">
+      <DependentUpon>LinearDitchesFeatureDealForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="地图综合\GeneralizeForm.resx">
+      <DependentUpon>GeneralizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="安徽\等级赋值\RoadRankSetForm.resx">
+      <DependentUpon>RoadRankSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\DataBaseClipForm.resx">
+      <DependentUpon>DataBaseClipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\DataBaseProjectForm.resx">
+      <DependentUpon>DataBaseProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\SelectByLocationForm.resx">
+      <DependentUpon>SelectByLocationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\BOULConstructBOUAFrm.resx">
+      <DependentUpon>BOULConstructBOUAFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\DatabaseMergeForm.resx">
+      <DependentUpon>DatabaseMergeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\DataMappingForm.resx">
+      <DependentUpon>DataMappingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\DBFormatConversionForm.resx">
+      <DependentUpon>DBFormatConversionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\LineFeatureMatchForm.resx">
+      <DependentUpon>LineFeatureMatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\FuseSmallHoleFrm.resx">
+      <DependentUpon>FuseSmallHoleFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\GeneralizationPretreatmentFrm.resx">
+      <DependentUpon>GeneralizationPretreatmentFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\LayerSelectForm.resx">
+      <DependentUpon>LayerSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\PolygonUnion.resx">
+      <DependentUpon>PolygonUnion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\PolylineEndPointProcessForm.resx">
+      <DependentUpon>PolylineEndPointProcessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\Process.resx">
+      <DependentUpon>Process.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\FrmMeasureResult.resx">
+      <DependentUpon>FrmMeasureResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="广西\质检\CheckRiverNameForm.resx">
+      <DependentUpon>CheckRiverNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\GradeListFrm.resx">
+      <DependentUpon>GradeListFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\Progress.resx">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="工具\SnapEnvConfigForm.resx">
+      <DependentUpon>SnapEnvConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="河北\AddCalcFieldForm.resx">
+      <DependentUpon>AddCalcFieldForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="编辑\AddFNForm.resx">
+      <DependentUpon>AddFNForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="编辑\AttributeBrushOptionForm.resx">
+      <DependentUpon>AttributeBrushOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="编辑\AttributeBrushToolForm.resx">
+      <DependentUpon>AttributeBrushToolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="编辑\EntitySelectFrm.resx">
+      <DependentUpon>EntitySelectFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\FrmBackspace.resx">
+      <DependentUpon>FrmBackspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\FrmSimplify.resx">
+      <DependentUpon>FrmSimplify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\FrmOutputDir.resx">
+      <DependentUpon>FrmOutputDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\CheckIsolatedRiverFrm.resx">
+      <DependentUpon>CheckIsolatedRiverFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\CheckRiverStructFrm.resx">
+      <DependentUpon>CheckRiverStructFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\CheckPolygonGapFrm.resx">
+      <DependentUpon>CheckPolygonGapFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="广西\质检\CheckRoadDataRankClassForm.resx">
+      <DependentUpon>CheckRoadDataRankClassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="江苏\PolygonGapAdjustmentForm.resx">
+      <DependentUpon>PolygonGapAdjustmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="江苏\SelectInterFeatureForm.resx">
+      <DependentUpon>SelectInterFeatureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="江苏\质检\CheckGraphicConflictFormJS.resx">
+      <DependentUpon>CheckGraphicConflictFormJS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="江苏\质检\CheckPolygonWidthForm.resx">
+      <DependentUpon>CheckPolygonWidthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\RiverGrade2ConnChkFrm.resx">
+      <DependentUpon>RiverGrade2ConnChkFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\RoadGradeConnChkFrm.resx">
+      <DependentUpon>RoadGradeConnChkFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="数据整理\FrmRiverClass.resx">
+      <DependentUpon>FrmRiverClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\LayerSelectForm.resx">
+      <DependentUpon>LayerSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新疆\质检\LayerSelectWithFiedsForm.resx">
+      <DependentUpon>LayerSelectWithFiedsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="右键菜单\LayerLabelSetForm.resx">
+      <DependentUpon>LayerLabelSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="右键菜单\LayerSelectableManageForm.resx">
+      <DependentUpon>LayerSelectableManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="右键菜单\ReferenceScaleDialog.resx">
+      <DependentUpon>ReferenceScaleDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckDataBaseStructForm.resx">
+      <DependentUpon>CheckDataBaseStructForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="冲突处理\CheckGraphicConflictForm.resx">
+      <DependentUpon>CheckGraphicConflictForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckLayerSelectForm.resx">
+      <DependentUpon>CheckLayerSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckLayerWithFieldsForm.resx">
+      <DependentUpon>CheckLayerWithFieldsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckLineFallintoPolygonForm.resx">
+      <DependentUpon>CheckLineFallintoPolygonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckMicroGeoForm.resx">
+      <DependentUpon>CheckMicroGeoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckNewCollabGUIDForm.resx">
+      <DependentUpon>CheckNewCollabGUIDForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckPropertiesConsistencyForm.resx">
+      <DependentUpon>CheckPropertiesConsistencyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckSamePlaceNameForm.resx">
+      <DependentUpon>CheckSamePlaceNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckWrinkleLineForm.resx">
+      <DependentUpon>CheckWrinkleLineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="质检\CheckPropertiesConsistencyOfSameFeatureForm.resx">
+      <DependentUpon>CheckPropertiesConsistencyOfSameFeatureForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Brush.cur" />
+    <EmbeddedResource Include="修线.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CmdUpdateConfig.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="新疆\质检\TangleChkCmd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SnapEnvConfigCmd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SMGI.Common\SMGI.Common.csproj">
+      <Project>{6CF02365-2D92-427B-92DB-1C55DAEEB1BF}</Project>
+      <Name>SMGI.Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SMGI.Plugin.Editing\SMGI.Plugin.GeneralEdit.csproj">
+      <Project>{79440E01-A02E-48D6-BE53-39996AC4BADF}</Project>
+      <Name>SMGI.Plugin.GeneralEdit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,12 @@
+﻿<Template>
+<Caption>安徽多尺度地图数据库生产系统</Caption>
+<ClassName>多尺度地图库生产</ClassName>
+<CommandLayout>Commands.xml</CommandLayout>
+<Content>
+<DataUpdate5W>true</DataUpdate5W>
+<DataTemplate>DataTemple.gdb</DataTemplate>
+<SkinStyle>Office 2010 Blue</SkinStyle>
+<SatrtImage>启动图片.jpg</SatrtImage>
+<FieldNameMapping>FNConfig.xml</FieldNameMapping>
+</Content>
+</Template>

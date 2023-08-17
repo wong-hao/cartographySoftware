@@ -1,0 +1,12 @@
+﻿<Platform>
+  <BGImage>platform.Image.png</BGImage>
+  <Products>
+    <ProductInfo>
+      <Name>多尺度地图库生产</Name>
+      <Location>300,480</Location>
+      <Size>180,86</Size>
+      <ImagePath>btn7.Image.jpg</ImagePath>
+      <Usable>True</Usable>
+    </ProductInfo>
+  </Products>
+</Platform>
