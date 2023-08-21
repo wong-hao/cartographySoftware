@@ -37,6 +37,12 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
         }
 
+        public static string CollabGUID
+        {
+            get;
+            private set;
+        }
+
         public static string CollabVERSION
         {
             get;
