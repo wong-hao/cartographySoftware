@@ -769,12 +769,12 @@
               <ToolTip>检查线端点未捕捉到其他线端点的问题（属于悬挂问题）</ToolTip>
             </Command>
             <Command>
-              <ClassName>SMGI.Plugin.DCDProcess.CheckMultipartCmd</ClassName>
+              <ClassName>SMGI.Plugin.CollaborativeWorkWithAccount.CheckMultipartCmd</ClassName>
               <Caption>多部件检查</Caption>
               <ToolTip>检查多部件要素</ToolTip>
             </Command>
             <Command>
-              <ClassName>SMGI.Plugin.DCDProcess.DataProcess.CheckPolygonGapCmd</ClassName>
+              <ClassName>SMGI.Plugin.DCDProcess.CheckPolygonGapCmd</ClassName>
               <Caption>面缝隙检查</Caption>
               <ToolTip>检查面缝隙</ToolTip>
             </Command>

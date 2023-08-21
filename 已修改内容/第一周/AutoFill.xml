@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoFill>
+  <Readme>此文件为协同作业（修改）时，记录上一次用户属性字段内容，用于下一次自动填充的信息。name为字段名，content为自动填充的内容</Readme>
+  <Field name="source" content="冲突处理" />
+  <Field name="remark" content="冲突处理" />
+  <Field name="tolerance" content="13" />
+</AutoFill>
