@@ -81,8 +81,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             {
                 selectionForm = new HYDLTouchHYDAForm();
                 selectionForm.roadNames = roadNames;
-                selectionForm.currentMap = currentMap;
                 selectionForm.areaNames = areaNames;
+                selectionForm.currentMap = currentMap;
                 selectionForm.ShowDialog();
             }
             catch (Exception ex)

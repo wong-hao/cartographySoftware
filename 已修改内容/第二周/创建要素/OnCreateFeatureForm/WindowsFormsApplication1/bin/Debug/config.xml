@@ -1,39 +1,44 @@
 <Configurations>
   <Layer>
-    <LayerName>县以上居民地</LayerName>
-    <Type>
+    <Name>县以上居民地</Name>
+    <TYPE>
       <Name>省会</Name>
       <GB>311102</GB>
       <CODE>310020</CODE>
       <CODE>31004230</CODE>
       <DJ>123</DJ>
-      <DJ></DJ>
-    </Type>
-    <Type>
+    </TYPE>
+    <TYPE>
       <Name>设区市</Name>
       <GB>311103</GB>
       <GB>311105</GB>
       <CODE>310030</CODE>
       <DJ></DJ>
-    </Type>
-    <!-- ... other types for this layer -->
+    </TYPE>
+    <TYPE>
+      <Name>县级市</Name>
+      <GB>311104</GB>
+      <CODE>310050</CODE>
+      <DJ></DJ>
+    </TYPE>
+    <!-- ... other TYPEs for this layer -->
   </Layer>
   <Layer>
-    <LayerName>sss</LayerName>
-    <Type>
+    <Name>sss</Name>
+    <TYPE>
       <Name>省会</Name>
       <GB>311102</GB>
       <CODE>310020</CODE>
       <CODE>sss</CODE>
       <DJ></DJ>
-    </Type>
-    <Type>
+    </TYPE>
+    <TYPE>
       <Name>设区市</Name>
       <GB>311103</GB>
       <CODE>310030</CODE>
       <DJ></DJ>
-    </Type>
-    <!-- ... other types for this layer -->
+    </TYPE>
+    <!-- ... other TYPEs for this layer -->
   </Layer>
   <!-- ... other layers -->
 </Configurations>

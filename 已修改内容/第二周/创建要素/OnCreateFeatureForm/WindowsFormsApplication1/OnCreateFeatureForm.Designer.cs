@@ -44,27 +44,30 @@
             this.tableLayoutPanelAll.Controls.Add(this.buttonOK, 0, 1);
             this.tableLayoutPanelAll.Controls.Add(this.buttonCancel, 1, 1);
             this.tableLayoutPanelAll.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanelAll.Name = "tableLayoutPanelAll";
             this.tableLayoutPanelAll.RowCount = 2;
             this.tableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelAll.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelAll.Size = new System.Drawing.Size(284, 147);
+            this.tableLayoutPanelAll.Size = new System.Drawing.Size(213, 90);
             this.tableLayoutPanelAll.TabIndex = 0;
             // 
             // comboBoxField
             // 
             this.comboBoxField.FormattingEnabled = true;
-            this.comboBoxField.Location = new System.Drawing.Point(3, 3);
+            this.comboBoxField.Location = new System.Drawing.Point(2, 2);
+            this.comboBoxField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxField.Name = "comboBoxField";
-            this.comboBoxField.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxField.Size = new System.Drawing.Size(92, 20);
             this.comboBoxField.TabIndex = 0;
             this.comboBoxField.SelectedIndexChanged += new System.EventHandler(this.comboBoxField_SelectedIndexChanged);
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(3, 76);
+            this.buttonOK.Location = new System.Drawing.Point(2, 47);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(75, 23);
+            this.buttonOK.Size = new System.Drawing.Size(56, 18);
             this.buttonOK.TabIndex = 1;
             this.buttonOK.Text = "button1";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -72,9 +75,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(145, 76);
+            this.buttonCancel.Location = new System.Drawing.Point(108, 47);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(56, 18);
             this.buttonCancel.TabIndex = 2;
             this.buttonCancel.Text = "button2";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -82,10 +86,11 @@
             // 
             // OnCreateFeatureForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 160);
+            this.ClientSize = new System.Drawing.Size(212, 91);
             this.Controls.Add(this.tableLayoutPanelAll);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "OnCreateFeatureForm";
             this.Text = "Form1";
             this.tableLayoutPanelAll.ResumeLayout(false);

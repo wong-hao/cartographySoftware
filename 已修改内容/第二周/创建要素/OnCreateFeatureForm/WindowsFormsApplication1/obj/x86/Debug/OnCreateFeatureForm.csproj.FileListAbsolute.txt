@@ -28,3 +28,11 @@ G:\CollaborativeWorkWithAccount\已修改内容\第二周\OnCreateFeatureForm\Wi
 G:\CollaborativeWorkWithAccount\已修改内容\第二周\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.OnCreateFeatureForm.resources
 G:\CollaborativeWorkWithAccount\已修改内容\第二周\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
 G:\CollaborativeWorkWithAccount\已修改内容\第二周\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\OnCreateFeatureForm.csproj.GenerateResource.Cache
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.exe
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\OnCreateFeatureForm.csprojResolveAssemblyReference.cache
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.OnCreateFeatureForm.resources
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+G:\CollaborativeWorkWithAccount\已修改内容\第二周\创建要素\OnCreateFeatureForm\WindowsFormsApplication1\obj\x86\Debug\OnCreateFeatureForm.csproj.GenerateResource.Cache

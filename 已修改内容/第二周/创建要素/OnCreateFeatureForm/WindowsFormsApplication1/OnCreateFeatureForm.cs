@@ -48,12 +48,12 @@ namespace WindowsFormsApplication1
             var layerNodes = xmlDoc.SelectNodes("//Layer");
             foreach (XmlNode layerNode in layerNodes)
             {
-                var layerNameNode = layerNode.SelectSingleNode("LayerName");
+                var layerNameNode = layerNode.SelectSingleNode("Name");
                 var configLayerName = layerNameNode.InnerText;
 
                 if (configLayerName == layerName)
                 {
-                    var typeNodes = layerNode.SelectNodes("Type");
+                    var typeNodes = layerNode.SelectNodes("TYPE");
                     foreach (XmlNode typeNode in typeNodes)
                     {
                         var name = typeNode.SelectSingleNode("Name").InnerText;
@@ -77,12 +77,12 @@ namespace WindowsFormsApplication1
                 var layerNodes = xmlDoc.SelectNodes("//Layer");
                 foreach (XmlNode layerNode in layerNodes)
                 {
-                    var layerNameNode = layerNode.SelectSingleNode("LayerName");
+                    var layerNameNode = layerNode.SelectSingleNode("Name");
                     var configLayerName = layerNameNode.InnerText;
 
                     if (configLayerName == layerName)
                     {
-                        var typeNodes = layerNode.SelectNodes("Type");
+                        var typeNodes = layerNode.SelectNodes("TYPE");
                         foreach (XmlNode typeNode in typeNodes)
                         {
                             var name = typeNode.SelectSingleNode("Name").InnerText;
@@ -119,12 +119,12 @@ namespace WindowsFormsApplication1
                 var layerNodes = xmlDoc.SelectNodes("//Layer");
                 foreach (XmlNode layerNode in layerNodes)
                 {
-                    var layerNameNode = layerNode.SelectSingleNode("LayerName");
+                    var layerNameNode = layerNode.SelectSingleNode("Name");
                     var configLayerName = layerNameNode.InnerText;
 
                     if (configLayerName == layerName)
                     {
-                        var typeNodes = layerNode.SelectNodes("Type");
+                        var typeNodes = layerNode.SelectNodes("TYPE");
                         foreach (XmlNode typeNode in typeNodes)
                         {
                             var name = typeNode.SelectSingleNode("Name").InnerText;
@@ -161,12 +161,12 @@ namespace WindowsFormsApplication1
                 var layerNodes = xmlDoc.SelectNodes("//Layer");
                 foreach (XmlNode layerNode in layerNodes)
                 {
-                    var layerNameNode = layerNode.SelectSingleNode("LayerName");
+                    var layerNameNode = layerNode.SelectSingleNode("Name");
                     var configLayerName = layerNameNode.InnerText;
 
                     if (configLayerName == layerName)
                     {
-                        var typeNodes = layerNode.SelectNodes("Type");
+                        var typeNodes = layerNode.SelectNodes("TYPE");
                         foreach (XmlNode typeNode in typeNodes)
                         {
                             var name = typeNode.SelectSingleNode("Name").InnerText;
@@ -200,12 +200,12 @@ namespace WindowsFormsApplication1
             var layerNodes = xmlDoc.SelectNodes("//Layer");
             foreach (XmlNode layerNode in layerNodes)
             {
-                var layerNameNode = layerNode.SelectSingleNode("LayerName");
+                var layerNameNode = layerNode.SelectSingleNode("Name");
                 var configLayerName = layerNameNode.InnerText;
 
                 if (configLayerName == layerName)
                 {
-                    var typeNodes = layerNode.SelectNodes("Type");
+                    var typeNodes = layerNode.SelectNodes("TYPE");
                     foreach (XmlNode typeNode in typeNodes)
                     {
                         var type = typeNode.SelectSingleNode("Name").InnerText;
@@ -328,6 +328,12 @@ namespace WindowsFormsApplication1
 
         private void comBoxType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // 清空所有已选中的内容
+            TYPE = ""; // 重置 TYPE 变量为初始值
+            GB = "";   // 重置 GB 变量为初始值
+            CODE = ""; // 重置 CODE 变量为初始值
+            DJ = "";   // 重置 DJ 变量为初始值
+
             // 将选中的字符串赋值给全局变量 TYPE
             if (comBoxType != null && comBoxType.SelectedItem != null) TYPE = comBoxType.SelectedItem.ToString();
         }
