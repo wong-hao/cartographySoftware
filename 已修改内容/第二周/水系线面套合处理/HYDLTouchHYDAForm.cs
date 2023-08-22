@@ -24,6 +24,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
         public IFeatureLayer _selecteddlFeatureLayer; // 要选择的水系线图层
         public IFeatureLayer _selecteddaFeatureLayer; // 要选择的水系面图层
 
+        public List<string> roadNames = new List<string>();
+        public List<string> areaNames = new List<string>();
 
         private void HYDLTouchHYDAForm_Load(object sender, EventArgs e)
         {
@@ -64,25 +66,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
                 //将当前图层列表清空
                 hydlLayerNameCombox.Items.Clear();
 
-                string layerName; //设置临时变量存储图层名称
-
-                // 对Map中的每个图层进行判断并加载名称
-                for (var i = 0; i < currentMap.LayerCount; i++)
+                foreach (string roadName in roadNames)
                 {
-                    ILayer layer = currentMap.get_Layer(i);
-
-                    // 判断是否为 IFeatureLayer 类型
-                    if (layer is IFeatureLayer)
-                    {
-                        IFeatureLayer featureLayer = (IFeatureLayer)layer;
-
-                        // 判断是否为折线类型的几何图形
-                        if (featureLayer.FeatureClass.ShapeType == ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPolyline)
-                        {
-                            layerName = layer.Name;
-                            hydlLayerNameCombox.Items.Add(layerName);
-                        }
-                    }
+                    hydlLayerNameCombox.Items.Add(roadName);
                 }
 
                 //将comboBoxLayerName控件的默认选项设置为空
@@ -102,25 +88,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
                 //将当前图层列表清空
                 hydaLayerNameCombox.Items.Clear();
 
-                string layerName; //设置临时变量存储图层名称
-
-                // 对Map中的每个图层进行判断并加载名称
-                for (var i = 0; i < currentMap.LayerCount; i++)
+                foreach (string areaName in areaNames)
                 {
-                    ILayer layer = currentMap.get_Layer(i);
-                    IFeatureLayer featureLayer = layer as IFeatureLayer;
-
-                    if (featureLayer != null)
-                    {
-                        IFeatureClass featureClass = featureLayer.FeatureClass;
-
-                        // 判断是否为面类型的几何图形
-                        if (featureClass.ShapeType == ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPolygon)
-                        {
-                            layerName = layer.Name;
-                            hydaLayerNameCombox.Items.Add(layerName);
-                        }
-                    }
+                    hydaLayerNameCombox.Items.Add(areaName);
                 }
 
                 //将comboBoxLayerName控件的默认选项设置为空
@@ -208,34 +178,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
             }
         }
 
-        // 清空选择的水系线图层
-        public void ClearSelectedDlFeatureLayer()
-        {
-            try
-            {
-                hydlLayerNameCombox.Items.Clear();
-                hydlLayerNameCombox.Text = "";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        // 清空选择的水系面图层
-        public void ClearSelectedDaFeatureLayer()
-        {
-            try
-            {
-                hydaLayerNameCombox.Items.Clear();
-                hydaLayerNameCombox.Text = "";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
         private void buttonOk_Click(object sender, EventArgs e)
         {
             // 检查是否有水系线图层被选中
@@ -243,12 +185,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
 
             // 检查是否有水系面图层被选中
             if (!CheckSelectedDALayer()) return;
-
-            // 清空已选水系线图层
-            ClearSelectedDlFeatureLayer();
-
-            // 清空已选水系面图层
-            ClearSelectedDaFeatureLayer();
 
             MessageBox.Show("选择的水系线图层为" + _selecteddlFeatureLayer.Name);
             MessageBox.Show("选择的水系面图层为" + _selecteddaFeatureLayer.Name);
@@ -260,6 +196,13 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
         {
             // 实时获取所选图层
             GetSelecteddaFeatureLayer();
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            _selecteddlFeatureLayer = null;
+            _selecteddaFeatureLayer = null;
+            Close();
         }
 
     }

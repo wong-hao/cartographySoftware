@@ -7,6 +7,7 @@ using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Carto;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geometry;
 using SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处理;
@@ -27,6 +28,50 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
         }
 
+        private List<string> roadNames = new List<string>();
+        private List<string> areaNames = new List<string>();
+        private string configuartionFile = "FacilityRoadAreaMapping.xml";
+
+        // Load names from XML configuration
+        private void LoadConfigurations()
+        {
+            string cfgFileName = m_Application.Template.Root + "\\" + configuartionFile;
+            if (!System.IO.File.Exists(cfgFileName))
+                return;
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(cfgFileName);
+
+            roadNames = LoadRoadNamesFromNode(xmlDoc, "Roads");
+            areaNames = LoadAreaNamesFromNode(xmlDoc, "Areas");
+        }
+
+        private List<string> LoadRoadNamesFromNode(XmlDocument doc, string nodeName)
+        {
+            List<string> RoadNames = new List<string>();
+
+            XmlNodeList facilityNodes = doc.SelectNodes("/Mapping/" + nodeName + "/Road");
+            foreach (XmlNode node in facilityNodes)
+            {
+                RoadNames.Add(node.InnerText);
+            }
+
+            return RoadNames;
+        }
+
+        private List<string> LoadAreaNamesFromNode(XmlDocument doc, string nodeName)
+        {
+            List<string> AreaNames = new List<string>();
+
+            XmlNodeList facilityNodes = doc.SelectNodes("/Mapping/" + nodeName + "/Area");
+            foreach (XmlNode node in facilityNodes)
+            {
+                AreaNames.Add(node.InnerText);
+            }
+
+            return AreaNames;
+        }
+
         /// <summary>
         ///     显示窗体
         /// </summary>
@@ -34,16 +79,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         {
             try
             {
-                if (selectionForm == null || selectionForm.IsDisposed)
-                {
-                    selectionForm = new HYDLTouchHYDAForm();
-                    selectionForm.currentMap = currentMap;
-                    selectionForm.ShowDialog();
-                }
-                else
-                {
-                    selectionForm.Activate();
-                }
+                selectionForm = new HYDLTouchHYDAForm();
+                selectionForm.roadNames = roadNames;
+                selectionForm.currentMap = currentMap;
+                selectionForm.areaNames = areaNames;
+                selectionForm.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -81,11 +121,19 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 return;
             }
 
+            LoadConfigurations();
+
             //显示窗体
             ShowSelectionForm();
 
+            if ((selectionForm._selecteddlFeatureLayer == null) || (selectionForm._selecteddaFeatureLayer == null))
+            {
+                return;
+            }
             string hydlLayerName = selectionForm._selecteddlFeatureLayer.Name;
             string hydaLayerName = selectionForm._selecteddaFeatureLayer.Name;
+
+
             IFeatureClass hydlFC = (m_Application.Workspace.LayerManager.GetLayer(
                     l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == hydlLayerName)).FirstOrDefault() as IFeatureLayer).FeatureClass;
             if (hydlFC == null)
