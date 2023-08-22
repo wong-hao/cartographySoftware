@@ -16,7 +16,7 @@ using System.IO;
 namespace SMGI.Plugin.CollaborativeWorkWithAccount
 {
     /// <summary>
-    /// 维护河流线与水系结构线与面装水系的关系(GB < 240200(溢洪道))
+    /// 维护河流线与水系结构线与面装水系的关系
     /// </summary>
     public class HYDLTouchHYDA
     {
@@ -75,9 +75,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     return err;
                 }
 
-                string filter = "GB < 240200";//溢洪道和沼泽等不参与
-                if (hydlFC.FindField(cmdUpdateRecord.CollabVERSION) != -1)
-                    filter += string.Format(" and ({0} <> {1} or {2} is null)", cmdUpdateRecord.CollabVERSION, cmdUpdateRecord.DeleteState, cmdUpdateRecord.CollabVERSION);
+                string filter = "";
+                //if (hydlFC.FindField(cmdUpdateRecord.CollabVERSION) != -1)
+                //    filter += string.Format(" and ({0} <> {1} or {2} is null)", cmdUpdateRecord.CollabVERSION, cmdUpdateRecord.DeleteState, cmdUpdateRecord.CollabVERSION);
 
                 #region 建立水系面的临时图层
                 //创建临时面要素类

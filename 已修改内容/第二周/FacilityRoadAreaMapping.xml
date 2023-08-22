@@ -1,0 +1,15 @@
+<Mapping>
+  <Facilities>
+    <Facility>堤田埂</Facility>
+    <Facility>港湾</Facility>
+  </Facilities>
+  <Roads>
+    <Road>海岸线</Road>
+    <Road>水渠</Road>
+    <Road>河流</Road>
+  </Roads>
+  <Areas>
+    <Area>海域</Area>
+    <Area>面状水域</Area>
+  </Areas>
+</Mapping>

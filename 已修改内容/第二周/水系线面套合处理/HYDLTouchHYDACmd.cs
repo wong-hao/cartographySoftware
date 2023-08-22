@@ -17,7 +17,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
     /// <summary>
     /// 水系面综合化简后，河流线及水系结构线应仍保持与水系面的touch关系
     /// </summary>
-    public class HYDLTouchHYDACmd : SMGI.Common.SMGITool
+    public class HYDLTouchHYDACmd : SMGI.Common.SMGICommand
     {
         public override bool Enabled
         {
@@ -38,7 +38,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 {
                     selectionForm = new HYDLTouchHYDAForm();
                     selectionForm.currentMap = currentMap;
-                    selectionForm.Show();
+                    selectionForm.ShowDialog();
                 }
                 else
                 {
@@ -84,63 +84,55 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             //显示窗体
             ShowSelectionForm();
 
-        }
-
-        public override void OnMouseDown(int button, int shift, int x, int y)
-        {
-            if (button == 1)
+            string hydlLayerName = selectionForm._selecteddlFeatureLayer.Name;
+            string hydaLayerName = selectionForm._selecteddaFeatureLayer.Name;
+            IFeatureClass hydlFC = (m_Application.Workspace.LayerManager.GetLayer(
+                    l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == hydlLayerName)).FirstOrDefault() as IFeatureLayer).FeatureClass;
+            if (hydlFC == null)
             {
-                string hydlLayerName = selectionForm._selecteddlFeatureLayer.Name;
-                string hydaLayerName = selectionForm._selecteddaFeatureLayer.Name;
-                IFeatureClass hydlFC = (m_Application.Workspace.LayerManager.GetLayer(
-                        l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == hydlLayerName)).FirstOrDefault() as IFeatureLayer).FeatureClass;
-                if (hydlFC == null)
-                {
-                    MessageBox.Show(string.Format("没找到水系线层【{0}】", hydlLayerName));
-                    return;
-                }
-                IFeatureClass hydaFC = (m_Application.Workspace.LayerManager.GetLayer(
-                        l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == hydaLayerName)).FirstOrDefault() as IFeatureLayer).FeatureClass;
-                if (hydaFC == null)
-                {
-                    MessageBox.Show(string.Format("没找到水系面层【{0}】", hydaLayerName));
-                    return;
-                }
-
-                m_Application.EngineEditor.StartOperation();
-
-                string outputFilePath = OutputSetup.GetDir() + "\\ProcessInfo";
-                if (!Directory.Exists(outputFilePath))
-                    Directory.CreateDirectory(outputFilePath);
-                string outputFileName = outputFilePath + string.Format("\\水系线处理情况.shp");
-
-
-                string err = "";
-                using (var wo = m_Application.SetBusy())
-                {
-                    HYDLTouchHYDA obj = new HYDLTouchHYDA();
-                    err = obj.Process(hydaFC, hydlFC, outputFileName, wo);
-                }
-
-
-                if (err != "")
-                {
-                    m_Application.EngineEditor.AbortOperation();
-
-                    MessageBox.Show(err);
-                }
-                else
-                {
-                    if (MessageBox.Show("是否加载处理情况数据到地图？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        CheckHelper.AddTempLayerFromSHPFile(m_Application.Workspace.LayerManager.Map, outputFileName);
-                    }
-                }
-
-                m_Application.EngineEditor.StopOperation("水系线拓扑关系纠正");
-
-            
+                MessageBox.Show(string.Format("没找到水系线层【{0}】", hydlLayerName));
+                return;
             }
+            IFeatureClass hydaFC = (m_Application.Workspace.LayerManager.GetLayer(
+                    l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == hydaLayerName)).FirstOrDefault() as IFeatureLayer).FeatureClass;
+            if (hydaFC == null)
+            {
+                MessageBox.Show(string.Format("没找到水系面层【{0}】", hydaLayerName));
+                return;
+            }
+
+            m_Application.EngineEditor.StartOperation();
+
+            string outputFilePath = OutputSetup.GetDir() + "\\ProcessInfo";
+            if (!Directory.Exists(outputFilePath))
+                Directory.CreateDirectory(outputFilePath);
+            string outputFileName = outputFilePath + string.Format("\\水系线处理情况.shp");
+
+
+            string err = "";
+            using (var wo = m_Application.SetBusy())
+            {
+                HYDLTouchHYDA obj = new HYDLTouchHYDA();
+                err = obj.Process(hydaFC, hydlFC, outputFileName, wo);
+            }
+
+
+            if (err != "")
+            {
+                m_Application.EngineEditor.AbortOperation();
+
+                MessageBox.Show(err);
+            }
+            else
+            {
+                if (MessageBox.Show("是否加载处理情况数据到地图？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    CheckHelper.AddTempLayerFromSHPFile(m_Application.Workspace.LayerManager.Map, outputFileName);
+                }
+            }
+
+            m_Application.EngineEditor.StopOperation("水系线拓扑关系纠正");
+
         }
     }
 }

@@ -7,6 +7,7 @@ using SMGI.Common;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
 using System.Windows.Forms;
+using System.Xml;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
@@ -28,6 +29,56 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             m_category = "整理工具";
             m_toolTip = "框选线状设施1条，就近设施套合到面上";
             NeedSnap = false;            
+        }
+
+        private List<string> facilityNames = new List<string>();
+        private List<string> areaNames = new List<string>();
+        private string configuartionFile = "FacilityRoadAreaMapping.xml";
+
+        // Load names from XML configuration
+        private void LoadConfigurations()
+        {
+            string cfgFileName = m_Application.Template.Root + "\\" + configuartionFile;
+            if (!System.IO.File.Exists(cfgFileName))
+                return;
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(cfgFileName);
+
+            facilityNames = LoadFacilityNamesFromNode(xmlDoc, "Facilities");
+            areaNames = LoadAreaNamesFromNode(xmlDoc, "Areas");
+        }
+
+        private List<string> LoadFacilityNamesFromNode(XmlDocument doc, string nodeName)
+        {
+            List<string> facilityNames = new List<string>();
+
+            XmlNodeList facilityNodes = doc.SelectNodes("/Mapping/" + nodeName + "/Facility");
+            foreach (XmlNode node in facilityNodes)
+            {
+                facilityNames.Add(node.InnerText);
+            }
+
+            return facilityNames;
+        }
+
+        private List<string> LoadAreaNamesFromNode(XmlDocument doc, string nodeName)
+        {
+            List<string> AreaNames = new List<string>();
+
+            XmlNodeList facilityNodes = doc.SelectNodes("/Mapping/" + nodeName + "/Area");
+            foreach (XmlNode node in facilityNodes)
+            {
+                AreaNames.Add(node.InnerText);
+            }
+
+            return AreaNames;
+        }
+
+        // Check if a name is in the specified list
+        private bool IsInList(string name, List<string> list)
+        {
+            return list.Contains(name.ToUpper());
         }
 
         public override bool Enabled
@@ -100,31 +151,39 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     IEnumFeature selectEnumFeature = (map.FeatureSelection) as IEnumFeature;
                     selectEnumFeature.Reset();
                     IFeature fe = null;
+
+                    // Load names from XML configuration
+                    LoadConfigurations();
+
                     while ((fe = selectEnumFeature.Next()) != null)
                     {
                         IFeatureClass fc = fe.Class as IFeatureClass;
                         string name = (fc as IDataset).Name;
 
-                        //IFeatureDataset fd = fc.FeatureDataset;
+                        // IFeatureDataset fd = fc.FeatureDataset;
                         IDataset fd = fc as IDataset;
                         
                         if (fd.Workspace != m_Application.EngineEditor.EditWorkspace)//非编辑要素，不处理
                             continue;
+
                         if (fc.ShapeType == esriGeometryType.esriGeometryPolyline)
                         {
-                            if (new List<string>() { "堤田埂", "港湾", "海岸线", "河流", "水渠" }.Contains(name.ToUpper()))//限定图层
+                            // if (new List<string>() { "HFCL", "LFCL" }.Contains(name.ToUpper()))//限定图层
+                            if (IsInList(name, facilityNames)) // 限定图层
                             {
                                 feLlist.Add(fe);                           
                             }
                         }
                         else if (fc.ShapeType == esriGeometryType.esriGeometryPolygon)
                         {
-                            if (new List<string>() { "海域", "面状水域" }.Contains(name.ToUpper()))//限定图层，去掉则不限定
+                            // if (new List<string>() { "HYDA","HFCA" }.Contains(name.ToUpper()))//限定图层，去掉则不限定
+                            if (IsInList(name, areaNames)) //限定图层，去掉则不限定
                             {
                                 feAlist.Add(fe);                            
                             }
                         }
                     }
+
                     if(feAlist.Count!=1 ||feLlist.Count!=1)
                     {
                         feL = null;
