@@ -42,12 +42,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             //获取选择图层，并查询点击位置是否存在面要素
             var toc = m_Application.TOCSelectItem;
-            if (!(toc.Layer is IGeoFeatureLayer) || (toc.Layer as IGeoFeatureLayer).FeatureClass.ShapeType !=
-                esriGeometryType.esriGeometryPolygon)
-            {
-                MessageBox.Show("Not polygon!");
-                return;
-            }
+            if (!(toc.Layer is IGeoFeatureLayer) || (toc.Layer as IGeoFeatureLayer).FeatureClass.ShapeType != esriGeometryType.esriGeometryPolygon) return;
             ISpatialFilter sf = new SpatialFilterClass { Geometry = ToSnapedMapPoint(x, y), SpatialRel = esriSpatialRelEnum.esriSpatialRelIntersects };
             var gfl = (IGeoFeatureLayer)toc.Layer;
             if (gfl.FeatureClass.FeatureCount(sf) > 0) return;
@@ -108,8 +103,20 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 if (idxGUID > -1 && idxVERS > -1 && idxUSER > -1)
                 {
                     fb.set_Value(idxVERS, cmdUpdateRecord.NewState);
-                    fb.set_Value(idxUSER, ServerDataInitializeCommand.CollabOPUSER);
-                    //fb.set_Value(idxGUID, "");
+                    fb.set_Value(idxUSER, cmdUpdateRecord.UserName);
+                    fb.set_Value(idxGUID, Guid.NewGuid().ToString());
+                }
+            }
+
+            if (cmdUpdateRecord.EnableChangeFeatureForm)//是否弹弹窗
+            {
+                OnChangeFeatureForm frm = new OnChangeFeatureForm(m_Application);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    string source = frm.source;
+                    string remark = frm.remark;
+                    fb.set_Value(fb.Fields.FindField("source"), source);
+                    fb.set_Value(fb.Fields.FindField("remark"), remark);
                 }
             }
 
