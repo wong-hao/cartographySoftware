@@ -54,10 +54,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             }
             else
-            {
+            {   
+                /*
                 MessageBox.Show("请选择作业范围面");
                 return;
- 
+                 */
             }
             
 

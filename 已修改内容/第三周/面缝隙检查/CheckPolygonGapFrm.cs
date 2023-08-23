@@ -68,8 +68,10 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 if ((layer.FeatureClass as IDataset).Workspace.PathName != _app.Workspace.EsriWorkspace.PathName)//临时数据不参与
                     continue;
 
+                /*
                 if (!layer.FeatureClass.AliasName.Contains("BOUA") && !layer.FeatureClass.AliasName.Contains("HYDA"))
                     continue;
+                 */
 
                 lyNames.Add(layer.Name.ToUpper());
             }

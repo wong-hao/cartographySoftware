@@ -29,13 +29,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
 
         private void HYDLTouchHYDAForm_Load(object sender, EventArgs e)
         {
-            InitDlLayersUi();
-
-            InitDaLayersUi();
+            InitUi();
         }
 
-        // 检查是否已选择水系线图层
-        private bool CheckSelectedDLLayer()
+        // 检查是否已选择水系图层
+        private bool CheckSelectedLayer()
         {
             if (hydlLayerNameCombox.SelectedIndex == -1)
             {
@@ -43,12 +41,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
                 return false;
             }
 
-            return true;
-        }
-
-        // 检查是否已选择水系面图层
-        private bool CheckSelectedDALayer()
-        {
             if (hydaLayerNameCombox.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择水系面图层！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -58,12 +50,12 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
             return true;
         }
 
-        // 初始化水系线图层界面
-        public void InitDlLayersUi()
+        // 初始化水系图层界面
+        public void InitUi()
         {
             try
             {
-                //将当前图层列表清空
+                //将水系线图层列表清空
                 hydlLayerNameCombox.Items.Clear();
 
                 foreach (string roadName in roadNames)
@@ -73,19 +65,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
 
                 //将comboBoxLayerName控件的默认选项设置为空
                 hydlLayerNameCombox.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
 
-        // 初始化水系面图层界面
-        public void InitDaLayersUi()
-        {
-            try
-            {
-                //将当前图层列表清空
+                //将水系面图层列表清空
                 hydaLayerNameCombox.Items.Clear();
 
                 foreach (string areaName in areaNames)
@@ -180,14 +161,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount.工具.水系线面套合处�
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            // 检查是否有水系线图层被选中
-            if (!CheckSelectedDLLayer()) return;
-
-            // 检查是否有水系面图层被选中
-            if (!CheckSelectedDALayer()) return;
-
-            MessageBox.Show("选择的水系线图层为" + _selecteddlFeatureLayer.Name);
-            MessageBox.Show("选择的水系面图层为" + _selecteddaFeatureLayer.Name);
+            // 检查是否有水系图层被选中
+            if (!CheckSelectedLayer()) return;
 
             Close();
         }
