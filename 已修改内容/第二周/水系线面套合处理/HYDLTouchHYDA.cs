@@ -76,8 +76,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 }
 
                 string filter = "";
-                //if (hydlFC.FindField(cmdUpdateRecord.CollabVERSION) != -1)
-                //    filter += string.Format(" and ({0} <> {1} or {2} is null)", cmdUpdateRecord.CollabVERSION, cmdUpdateRecord.DeleteState, cmdUpdateRecord.CollabVERSION);
+                if (hydlFC.FindField(ServerDataInitializeCommand.CollabVERSION) != -1)
+                    filter += string.Format("({0} <> {1} or {2} is null)", ServerDataInitializeCommand.CollabVERSION, cmdUpdateRecord.DeleteState, ServerDataInitializeCommand.CollabVERSION);
 
                 #region 建立水系面的临时图层
                 //创建临时面要素类
@@ -189,39 +189,22 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     //找不合法要素
                     foreach (var item in feList)
                     {
-                        if (hydlFeGB == 210400)//水系结构线
+                        //判断该段水系结构线是否包含在某一面内
+                        bool bWithinPolygon = false;
+                        foreach (var interHydaFe in interHydaFeList)
                         {
-                            //判断该段水系结构线是否包含在某一面内
-                            bool bWithinPolygon = false;
-                            foreach (var interHydaFe in interHydaFeList)
+                            IRelationalOperator ro = interHydaFe.Shape as IRelationalOperator;
+                            if (ro.Contains(item.Shape))
                             {
-                                IRelationalOperator ro = interHydaFe.Shape as IRelationalOperator;
-                                if (ro.Contains(item.Shape))
-                                {
-                                    //水系结构线包含于一个水系面内
-                                    bWithinPolygon = true;
-                                    break;
-                                }
-                            }
-
-                            if (!bWithinPolygon)//非法要素
-                            {
-                                nonlicetFeList.Add(item);
+                                //水系结构线包含于一个水系面内
+                                bWithinPolygon = true;
+                                break;
                             }
                         }
-                        else//非水系结构线
-                        {
-                            //判断该段非水系结构线是否在所有水系面外
-                            foreach (var interHydaFe in interHydaFeList)
-                            {
-                                IRelationalOperator ro = interHydaFe.Shape as IRelationalOperator;
-                                if (ro.Contains(item.Shape))
-                                {
-                                    nonlicetFeList.Add(item);
 
-                                    break;
-                                }
-                            }
+                        if (!bWithinPolygon)//非法要素
+                        {
+                            nonlicetFeList.Add(item);
                         }
                     }
 
@@ -254,46 +237,20 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                         {
                             if (bToPoint)
                             {
-                                //该非法要素两端都是交点
-                                if (hydlFeGB != 210400)//非水系结构线的不合法要素，则说明其被一个水系面所包含，可修改其GB为水系结构线
+                                //记录该要素，交由作业人员判断处理
+                                if (resultFile != null)
                                 {
-                                    nonlicetFe.set_Value(gbIndex, 210400);
-                                    nonlicetFe.Store();
+                                    IPointCollection errGeo = new MultipointClass();
+                                    errGeo.AddPoint(pl.FromPoint);
 
+                                    Dictionary<string, string> fieldName2FieldValue = new Dictionary<string, string>();
+                                    fieldName2FieldValue.Add("原始水系线OID", string.Format("{0}", hydlFe.OID));
+                                    fieldName2FieldValue.Add("水系线OID", string.Format("{0}", nonlicetFe.OID));
+                                    fieldName2FieldValue.Add("处理情况", string.Format("{0}", "未修改属性，两端要素的属性没有参考意义"));
 
-                                    //记录处理情况
-                                    if (resultFile != null)
-                                    {
-                                        IPointCollection errGeo = new MultipointClass();
-                                        errGeo.AddPoint(pl.FromPoint);
-                                        
-                                        Dictionary<string, string> fieldName2FieldValue = new Dictionary<string, string>();
-                                        fieldName2FieldValue.Add("原始水系线OID", string.Format("{0}", hydlFe.OID));
-                                        fieldName2FieldValue.Add("水系线OID", string.Format("{0}", nonlicetFe.OID));
-                                        fieldName2FieldValue.Add("处理情况", string.Format("{0}", "已修改属性（GB）"));
-
-                                        resultFile.addErrorGeometry(errGeo as IGeometry, fieldName2FieldValue);
-                                    }
+                                    resultFile.addErrorGeometry(errGeo as IGeometry, fieldName2FieldValue);
                                 }
-                                else//水系结构线的不合法要素,则说明该要素不被任何一个面要素所包含，而两端又都是交点，此种情况需要作业人员手动去做处理
-                                {
-                                    //记录该要素，交由作业人员判断处理
-                                    if (resultFile != null)
-                                    {
-                                        IPointCollection errGeo = new MultipointClass();
-                                        errGeo.AddPoint(pl.FromPoint);
-
-                                        Dictionary<string, string> fieldName2FieldValue = new Dictionary<string, string>();
-                                        fieldName2FieldValue.Add("原始水系线OID", string.Format("{0}", hydlFe.OID));
-                                        fieldName2FieldValue.Add("水系线OID", string.Format("{0}", nonlicetFe.OID));
-                                        fieldName2FieldValue.Add("处理情况", string.Format("{0}", "未修改属性，两端要素的属性没有参考意义"));
-
-                                        resultFile.addErrorGeometry(errGeo as IGeometry, fieldName2FieldValue);
-                                    }
-                                }
-
                                 continue;
-
                             }
                             else
                             {
@@ -338,9 +295,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                             (touchesFeList[0].Shape as ITopologicalOperator2).Simplify();
                             (nonlicetFe.Shape as ITopologicalOperator2).Simplify();
                             touchesFeList[0].Shape = (touchesFeList[0].Shape as ITopologicalOperator).Union(nonlicetFe.Shape);
-                            if (hydlFC.FindField(cmdUpdateRecord.CollabVERSION) != -1)
+                            if (hydlFC.FindField(ServerDataInitializeCommand.CollabVERSION) != -1)
                             {
-                                int idx = touchesFeList[0].Fields.FindField(cmdUpdateRecord.CollabVERSION);
+                                int idx = touchesFeList[0].Fields.FindField(ServerDataInitializeCommand.CollabVERSION);
                                 int state = Int32.Parse(touchesFeList[0].get_Value(idx).ToSafeString());
                                 if (state != cmdUpdateRecord.NewState)
                                     touchesFeList[0].set_Value(idx, cmdUpdateRecord.EditState);
@@ -440,7 +397,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 {
                     bool bCoola = true;
                     #region 协同
-                    if (f.Fields.FindField(cmdUpdateRecord.CollabGUID) == -1)
+                    if (f.Fields.FindField(ServerDataInitializeCommand.CollabGUID) == -1)
                     {
                         bCoola = false;
                     }
@@ -448,18 +405,18 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     string collGUID = "";
                     if (bCoola)
                     {
-                        collGUID = f.get_Value(f.Fields.FindField(cmdUpdateRecord.CollabGUID)).ToString();
+                        collGUID = f.get_Value(f.Fields.FindField(ServerDataInitializeCommand.CollabGUID)).ToString();
                     }
 
                     int smgiver = 0;
                     if (bCoola)
                     {
-                        int.TryParse(f.get_Value(f.Fields.FindField(cmdUpdateRecord.CollabVERSION)).ToString(), out smgiver);
+                        int.TryParse(f.get_Value(f.Fields.FindField(ServerDataInitializeCommand.CollabVERSION)).ToString(), out smgiver);
                     }
 
                     if (bCoola)
                     {
-                        f.set_Value(f.Fields.FindField(cmdUpdateRecord.CollabVERSION), cmdUpdateRecord.NewState);//直接删除的标志
+                        f.set_Value(f.Fields.FindField(ServerDataInitializeCommand.CollabVERSION), cmdUpdateRecord.NewState);//直接删除的标志
                     }
                     #endregion
 
@@ -516,13 +473,13 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                         {
                                             if (bCoola)
                                             {
-                                                flist[k].set_Value(flist[k].Fields.FindField(cmdUpdateRecord.CollabVERSION), cmdUpdateRecord.EditState);
+                                                flist[k].set_Value(flist[k].Fields.FindField(ServerDataInitializeCommand.CollabVERSION), cmdUpdateRecord.EditState);
                                             }
                                         }
 
                                         if (bCoola)
                                         {
-                                            flist[k].set_Value(flist[k].Fields.FindField(cmdUpdateRecord.CollabGUID), collGUID);//默认由最大的新要素继承原要素的collGUID
+                                            flist[k].set_Value(flist[k].Fields.FindField(ServerDataInitializeCommand.CollabGUID), collGUID);//默认由最大的新要素继承原要素的collGUID
                                         }
 
                                         flist[k].Store();

@@ -33,7 +33,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         {
             get
             {
-                return string.Format("({0} is null or {0} >= 0 or {1} is null or {1} <> '{2}')", cmdUpdateRecord.CollabVERSION, cmdUpdateRecord.CollabDELSTATE, cmdUpdateRecord.DelStateText);//增加{1} <> '{2}'条件主要是为了兼容数据中协同删除状态的为空字符串的情况
+                return string.Format("({0} is null or {0} >= 0 or {1} is null or {1} <> '{2}')", ServerDataInitializeCommand.CollabVERSION, ServerDataInitializeCommand.CollabDELSTATE, ServerDataInitializeCommand.DelStateText);//增加{1} <> '{2}'条件主要是为了兼容数据中协同删除状态的为空字符串的情况
             }
         }
 
