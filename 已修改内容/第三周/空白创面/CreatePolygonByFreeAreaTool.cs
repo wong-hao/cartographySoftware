@@ -42,7 +42,12 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             //获取选择图层，并查询点击位置是否存在面要素
             var toc = m_Application.TOCSelectItem;
-            if (!(toc.Layer is IGeoFeatureLayer) || (toc.Layer as IGeoFeatureLayer).FeatureClass.ShapeType != esriGeometryType.esriGeometryPolygon) return;
+            if (!(toc.Layer is IGeoFeatureLayer) || (toc.Layer as IGeoFeatureLayer).FeatureClass.ShapeType !=
+                esriGeometryType.esriGeometryPolygon)
+            {
+                MessageBox.Show("Not polygon!");
+                return;
+            }
             ISpatialFilter sf = new SpatialFilterClass { Geometry = ToSnapedMapPoint(x, y), SpatialRel = esriSpatialRelEnum.esriSpatialRelIntersects };
             var gfl = (IGeoFeatureLayer)toc.Layer;
             if (gfl.FeatureClass.FeatureCount(sf) > 0) return;
@@ -92,23 +97,21 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             var fb = gfl.FeatureClass.CreateFeatureBuffer();
             fb.Shape = nfe.Shape;
 
-            /*
-            if (gfl.FeatureClass.HasCollabField())
+            // if (gfl.FeatureClass.HasCollabField())
             {
                 int idxGUID = -1;
                 int idxVERS = -1;
                 int idxUSER = -1;
-                idxGUID = gfl.FeatureClass.FindField(cmdUpdateRecord.CollabGUID);
-                idxVERS = gfl.FeatureClass.FindField(cmdUpdateRecord.CollabVERSION);
-                idxUSER = gfl.FeatureClass.FindField(cmdUpdateRecord.CollabOPUSER);
+                idxGUID = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabGUID);
+                idxVERS = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabVERSION);
+                idxUSER = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabOPUSER);
                 if (idxGUID > -1 && idxVERS > -1 && idxUSER > -1)
                 {
                     fb.set_Value(idxVERS, cmdUpdateRecord.NewState);
-                    fb.set_Value(idxUSER, cmdUpdateRecord.UserName);
+                    fb.set_Value(idxUSER, ServerDataInitializeCommand.CollabOPUSER);
                     //fb.set_Value(idxGUID, "");
                 }
             }
-             */
 
             fci.InsertFeature(fb);
             fci.Flush();

@@ -105,10 +105,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
                     IQueryFilter qf = new QueryFilterClass();
 
-                    /*
-                    if (fc.HasCollabField())
+                    // if (fc.HasCollabField())
                         qf.WhereClause = cmdUpdateRecord.CurFeatureFilter;
-                     */
+
                     if (wo != null)
                         wo.SetText(string.Format("正在对要素类【{0}】进行多部件检查......", fc.AliasName));
 

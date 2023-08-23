@@ -136,10 +136,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
                     IQueryFilter qf = new QueryFilterClass();
 
-                    /*
-                    if (fc.HasCollabField())
+                    // if (fc.HasCollabField())
                         qf.WhereClause = cmdUpdateRecord.CurFeatureFilter;
-                     */
 
                     Dictionary<IPoint, KeyValuePair<int, int>> pseudoList = new Dictionary<IPoint, KeyValuePair<int, int>>();
                     #region 构建拓扑，检查伪节点(不考虑属性、不考虑范围)

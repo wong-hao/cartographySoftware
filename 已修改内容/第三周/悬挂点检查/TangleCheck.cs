@@ -167,10 +167,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             var versionFilter = "";
 
-            /*
-            if (fcls.HasCollabField())
+            // if (fcls.HasCollabField())
                 versionFilter = cmdUpdateRecord.CurFeatureFilter;
-             */
 
             IFeatureCursor fCursor = fcls.Search(new QueryFilterClass { WhereClause = versionFilter }, true);
             IFeature feature = null;

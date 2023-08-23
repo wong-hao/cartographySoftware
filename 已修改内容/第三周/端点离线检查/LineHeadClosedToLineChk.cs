@@ -122,15 +122,13 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             makeFeatureLayer.out_layer = fclsLyr;
             Helper.ExecuteGPTool(gp, makeFeatureLayer, null);
 
-            /*
-            if (fcls.HasCollabField())
+            // if (fcls.HasCollabField())
             {
                 SelectLayerByAttribute selectLayerByAttribute = new SelectLayerByAttribute();
                 selectLayerByAttribute.in_layer_or_view = fclsLyr;
                 selectLayerByAttribute.where_clause = cmdUpdateRecord.CurFeatureFilter;
                 Helper.ExecuteGPTool(gp, selectLayerByAttribute, null); 
             }
-             */
 
             //输入图层已考虑删除的线
             //CurFeatureFilter

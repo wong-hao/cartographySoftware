@@ -33,10 +33,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 IFeatureClass temp_FC = DCDHelper.CreateFeatureClassStructToWorkspace(fws, fc, fc.AliasName + "_temp");
                 string filter = "";
 
-                /*
-                if (fc.HasCollabField())
+                // if (fc.HasCollabField())
                     filter = cmdUpdateRecord.CurFeatureFilter;
-                 */
 
                 ExportPolygonFeature(fc, new QueryFilterClass { WhereClause = filter }, temp_FC, true);
 
