@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.hydlLayerNameCombox = new System.Windows.Forms.ComboBox();
+            this.roadLayerNameCombox = new System.Windows.Forms.ComboBox();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.hydaLayerNameCombox = new System.Windows.Forms.ComboBox();
+            this.areaLayerNameCombox = new System.Windows.Forms.ComboBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // hydlLayerNameCombox
+            // roadLayerNameCombox
             // 
-            this.hydlLayerNameCombox.FormattingEnabled = true;
-            this.hydlLayerNameCombox.Location = new System.Drawing.Point(124, 24);
-            this.hydlLayerNameCombox.Name = "hydlLayerNameCombox";
-            this.hydlLayerNameCombox.Size = new System.Drawing.Size(121, 20);
-            this.hydlLayerNameCombox.TabIndex = 0;
-            this.hydlLayerNameCombox.SelectedIndexChanged += new System.EventHandler(this.hydlLayerNameCombox_SelectedIndexChanged);
+            this.roadLayerNameCombox.FormattingEnabled = true;
+            this.roadLayerNameCombox.Location = new System.Drawing.Point(124, 24);
+            this.roadLayerNameCombox.Name = "roadLayerNameCombox";
+            this.roadLayerNameCombox.Size = new System.Drawing.Size(121, 20);
+            this.roadLayerNameCombox.TabIndex = 0;
+            this.roadLayerNameCombox.SelectedIndexChanged += new System.EventHandler(this.RoadLayerNameCombox_SelectedIndexChanged);
             // 
-            // hydaLayerNameCombox
+            // areaLayerNameCombox
             // 
-            this.hydaLayerNameCombox.FormattingEnabled = true;
-            this.hydaLayerNameCombox.Location = new System.Drawing.Point(124, 66);
-            this.hydaLayerNameCombox.Name = "hydaLayerNameCombox";
-            this.hydaLayerNameCombox.Size = new System.Drawing.Size(121, 20);
-            this.hydaLayerNameCombox.TabIndex = 1;
-            this.hydaLayerNameCombox.SelectedIndexChanged += new System.EventHandler(this.hydaLayerNameCombox_SelectedIndexChanged);
+            this.areaLayerNameCombox.FormattingEnabled = true;
+            this.areaLayerNameCombox.Location = new System.Drawing.Point(124, 66);
+            this.areaLayerNameCombox.Name = "areaLayerNameCombox";
+            this.areaLayerNameCombox.Size = new System.Drawing.Size(121, 20);
+            this.areaLayerNameCombox.TabIndex = 1;
+            this.areaLayerNameCombox.SelectedIndexChanged += new System.EventHandler(this.AreaLayerNameCombox_SelectedIndexChanged);
             // 
             // buttonOk
             // 
@@ -102,8 +102,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
-            this.Controls.Add(this.hydaLayerNameCombox);
-            this.Controls.Add(this.hydlLayerNameCombox);
+            this.Controls.Add(this.areaLayerNameCombox);
+            this.Controls.Add(this.roadLayerNameCombox);
             this.Name = "HYDLTouchHYDAForm";
             this.Text = "图层选择器";
             this.Load += new System.EventHandler(this.HYDLTouchHYDAForm_Load);
@@ -114,9 +114,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox hydlLayerNameCombox;
+        private System.Windows.Forms.ComboBox roadLayerNameCombox;
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
-        private System.Windows.Forms.ComboBox hydaLayerNameCombox;
+        private System.Windows.Forms.ComboBox areaLayerNameCombox;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label label1;

@@ -126,12 +126,17 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             //显示窗体
             ShowSelectionForm();
 
-            if ((selectionForm._selecteddlFeatureLayer == null) || (selectionForm._selecteddaFeatureLayer == null))
+            if ((selectionForm.selectedRoadLayer == null) || (selectionForm.selectedAreaLayer == null))
             {
                 return;
             }
-            string hydlLayerName = selectionForm._selecteddlFeatureLayer.Name;
-            string hydaLayerName = selectionForm._selecteddaFeatureLayer.Name;
+
+            /*string hydlLayerName = "HYDL";
+            string hydaLayerName = "HYDA";
+             */
+
+            string hydlLayerName = selectionForm.selectedRoadLayer.Name;
+            string hydaLayerName = selectionForm.selectedAreaLayer.Name;
 
 
             IFeatureClass hydlFC = (m_Application.Workspace.LayerManager.GetLayer(

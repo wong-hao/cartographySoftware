@@ -13,6 +13,7 @@ using ESRI.ArcGIS.SystemUI;
 using ESRI.ArcGIS.DataSourcesGDB;
 using SMGI.Common;
 using System.Runtime.InteropServices;
+using SMGI.DxForm;
 
 namespace SMGI.Plugin.CollaborativeWorkWithAccount
 {
@@ -97,14 +98,32 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 int idxGUID = -1;
                 int idxVERS = -1;
                 int idxUSER = -1;
+                int idxSTACOD = -1;
+                int idxDATE = -1;
+                int idxCORRECTOR = -1;
                 idxGUID = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabGUID);
                 idxVERS = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabVERSION);
                 idxUSER = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabOPUSER);
+                idxSTACOD = gfl.FeatureClass.FindField(ServerDataInitializeCommand.CollabSTACOD);
+                idxDATE = gfl.FeatureClass.FindField("date");
+                //corrector有长度限制，需截取
+                int fieldLenth = fb.Fields.get_Field(fb.Fields.FindField("corrector")).Length;
+                idxCORRECTOR = fb.Fields.FindField("corrector");
                 if (idxGUID > -1 && idxVERS > -1 && idxUSER > -1)
                 {
                     fb.set_Value(idxVERS, cmdUpdateRecord.NewState);
                     fb.set_Value(idxUSER, cmdUpdateRecord.UserName);
                     fb.set_Value(idxGUID, Guid.NewGuid().ToString());
+                    fb.set_Value(idxSTACOD, "增加");
+                    fb.set_Value(idxDATE, DateTime.Now.ToString("yyyyMMdd"));
+                    if (GlobalClass.strname.Length > fieldLenth)
+                    {
+                        fb.set_Value(idxCORRECTOR, GlobalClass.strname.Substring(0, fieldLenth));
+                    }
+                    else
+                    {
+                        fb.set_Value(idxCORRECTOR, GlobalClass.strname);
+                    }
                 }
             }
 
