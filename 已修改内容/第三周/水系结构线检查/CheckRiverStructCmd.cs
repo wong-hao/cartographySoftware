@@ -212,7 +212,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
 
                     IFeatureCursor hydlEraseCursor = hydlFCErase.Search(null, true);
-                    int guidindex = hydlFCErase.FindField(cmdUpdateRecord.CollabGUID);
+                    int guidindex = hydlFCErase.FindField(ServerDataInitializeCommand.CollabGUID);
                     string guid;
                     string info = "结构线在水系面外";
 
@@ -271,7 +271,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
                     IFeatureCursor hydlClipCursor = hydlFCClip.Search(null, true);
                     IFeature hydlFe = null;
-                    int guidindex = hydlFCClip.FindField(cmdUpdateRecord.CollabGUID);
+                    int guidindex = hydlFCClip.FindField(ServerDataInitializeCommand.CollabGUID);
                     string guid;
 
                     string info = "非结构线在水系面内";

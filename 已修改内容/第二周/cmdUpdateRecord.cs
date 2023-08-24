@@ -37,27 +37,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
         }
 
-        public static string CollabGUID
-        {
-            get;
-            private set;
-        }
-
-        public static string CollabVERSION
-        {
-            get;
-            private set;
-        }
-
-        public static string CollabDELSTATE//删除状态['是']
-        {
-            get;
-            private set;
-        }
-
-        public const string DelStateText = "是";//要素的删除状态文本{同时版本号为负数}
-
-
         ITable recordTable;
         int guidIndex = -1;
         string layerName;
@@ -96,8 +75,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             base.setApplication(app);
 
             editor = app.EngineEditor;
-
-            CollabVERSION = m_Application.TemplateManager.getFieldAliasName("SMGIVERSION");
 
             (editor as IEngineEditEvents_Event).OnCreateFeature += new IEngineEditEvents_OnCreateFeatureEventHandler(UApplication_OnCreateFeature);
             (editor as IEngineEditEvents_Event).OnChangeFeature += new IEngineEditEvents_OnChangeFeatureEventHandler(UApplication_OnChangeFeature);

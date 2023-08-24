@@ -68,8 +68,10 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 cbLayerNames.Items.Add(new KeyValuePair<IFeatureClass, string>((lyr as IFeatureLayer).FeatureClass, lyr.Name));
             }
 
+            /*
 
             int agnpIndex = -1;
+
             for (int i = 0; i < cbLayerNames.Items.Count; ++i)
             {
                 var item = (KeyValuePair<IFeatureClass, string>)cbLayerNames.Items[i];
@@ -83,6 +85,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             {
                 cbLayerNames.SelectedIndex = agnpIndex;
             }
+             */
+
+            cbLayerNames.SelectedIndex = 0;
 
             tbOutFilePath.Text = OutputSetup.GetDir();
         }
