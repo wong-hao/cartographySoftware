@@ -1,0 +1,931 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoFill>
+  <AutoFillForm>
+    <Readme>此部分内容为协同作业（修改）时，弹窗记录上一次用户属性字段内容，用于下一次自动填充的信息。name为字段名，content为自动填充的内容</Readme>
+    <Class>CollaborativeWorkWithAccount.OnChangeFeatureForm</Class>
+    <Field name="source" content="无" />
+    <Field name="remark" content="新建要素测试" />
+  </AutoFillForm>
+  <Tolerance>
+    <Readme>此部分内容为编辑选项中的粘滞移动容差</Readme>
+    <Class>GeneralEdit.EditOptionForm</Class>
+    <Field name="tolerance" content="14" />
+  </Tolerance>
+  <AutoFillBackground>
+    <Readme>此部分内容为协同作业（创建要素）时，根据用户创建的要素类型，自动填写部分字段的内容</Readme>
+    <Class>CollaborativeWorkWithAccount.OnChangeFeatureForm</Class>
+    <Layer name="城市道路" heading="DJ">
+      <Label name="已建城市联盟线">
+        <Field name="gb" content="430200" />
+        <Field name="code" content="430202" />
+        <Field name="type" content="城市环线" />
+        <Field name="dj" content="已建城市联盟线" />
+      </Label>
+      <Label name="城市环线">
+        <Field name="gb" content="430200" />
+        <Field name="code" content="430201" />
+        <Field name="type" content="城市环线" />
+        <Field name="dj" content="城市环线" />
+      </Label>
+      <Label name="一级城市道路">
+        <Field name="gb" content="430501" />
+        <Field name="code" content="430401" />
+        <Field name="type" content="主干道" />
+        <Field name="dj" content="一级城市道路" />
+      </Label>
+      <Label name="一级街道">
+        <Field name="gb" content="430501" />
+        <Field name="code" content="430401" />
+        <Field name="type" content="主干道" />
+        <Field name="dj" content="一级街道" />
+      </Label>
+      <Label name="二级街道">
+        <Field name="gb" content="430501" />
+        <Field name="code" content="430402" />
+        <Field name="type" content="主干道" />
+        <Field name="dj" content="二级街道" />
+      </Label>
+      <Label name="三级街道">
+        <Field name="gb" content="430502" />
+        <Field name="code" content="430403" />
+        <Field name="type" content="次干道" />
+        <Field name="dj" content="三级街道" />
+      </Label>
+      <Label name="四级街道">
+        <Field name="gb" content="430502" />
+        <Field name="code" content="430404" />
+        <Field name="type" content="次干道" />
+        <Field name="dj" content="四级街道" />
+      </Label>
+      <Label name="五级街道">
+        <Field name="gb" content="430503" />
+        <Field name="code" content="430405" />
+        <Field name="type" content="支线" />
+        <Field name="dj" content="五级街道" />
+      </Label>
+      <Label name="其他街道">
+        <Field name="gb" content="430503" />
+        <Field name="code" content="430406" />
+        <Field name="type" content="支线" />
+        <Field name="dj" content="其他街道" />
+      </Label>
+      <Label name="在建城市联盟线">
+        <Field name="gb" content="430200" />
+        <Field name="code" content="430212" />
+        <Field name="type" content="城市环线" />
+        <Field name="dj" content="在建城市联盟线" />
+      </Label>
+      <Label name="在建一级城市道路">
+        <Field name="dj" content="在建一级城市道路" />
+      </Label>
+      <Label name="在建一级街道">
+        <Field name="gb" content="430501" />
+        <Field name="code" content="430411" />
+        <Field name="type" content="主干道" />
+        <Field name="dj" content="在建一级街道" />
+      </Label>
+      <Label name="在建二级街道">
+        <Field name="gb" content="430501" />
+        <Field name="code" content="430412" />
+        <Field name="type" content="主干道" />
+        <Field name="dj" content="在建二级街道" />
+      </Label>
+      <Label name="在建三级街道">
+        <Field name="gb" content="430502" />
+        <Field name="code" content="430413" />
+        <Field name="type" content="次干道" />
+        <Field name="dj" content="在建三级街道" />
+      </Label>
+      <Label name="在建四级街道">
+        <Field name="gb" content="430502" />
+        <Field name="code" content="430414" />
+        <Field name="type" content="次干道" />
+        <Field name="dj" content="在建四级街道" />
+      </Label>
+      <Label name="在建五级街道">
+        <Field name="gb" content="430503" />
+        <Field name="code" content="430415" />
+        <Field name="type" content="支线" />
+        <Field name="dj" content="在建五级街道" />
+      </Label>
+      <Label name="内部道路">
+        <Field name="gb" content="430600" />
+        <Field name="code" content="430600" />
+        <Field name="type" content="内部道路" />
+        <Field name="dj" content="内部道路" />
+      </Label>
+    </Layer>
+    <Layer name="点状水库" heading="DJ">
+      <Label name="一级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240001" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="一级水域" />
+      </Label>
+      <Label name="二级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240002" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="二级水域" />
+      </Label>
+      <Label name="三级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240003" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="三级水域" />
+      </Label>
+      <Label name="四级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240004" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="四级水域" />
+      </Label>
+      <Label name="五级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240005" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="五级水域" />
+      </Label>
+      <Label name="六级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240006" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="六级水域" />
+      </Label>
+      <Label name="七级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240007" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="七级水域" />
+      </Label>
+      <Label name="八级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240008" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="八级水域" />
+      </Label>
+      <Label name="九级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240009" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="九级水域" />
+      </Label>
+      <Label name="十级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240010" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十级水域" />
+      </Label>
+      <Label name="十一级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240011" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十一级水域" />
+      </Label>
+      <Label name="十二级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240012" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十二级水域" />
+      </Label>
+      <Label name="十三级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240013" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十三级水域" />
+      </Label>
+      <Label name="十四级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240014" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十四级水域" />
+      </Label>
+    </Layer>
+    <Layer name="高速公路" heading="TYPE, DJ">
+      <Label name="已建高速, 已建高速公路">
+        <Field name="gb" content="420901" />
+        <Field name="code" content="420010" />
+        <Field name="type" content="已建高速" />
+        <Field name="dj" content="已建高速公路" />
+      </Label>
+      <Label name="在建高速, 在建高速公路">
+        <Field name="gb" content="420902" />
+        <Field name="code" content="420011" />
+        <Field name="type" content="在建高速" />
+        <Field name="dj" content="在建高速公路" />
+      </Label>
+      <Label name="规划高速, 规划高速公路">
+        <Field name="gb" content="420903" />
+        <Field name="code" content="420012" />
+        <Field name="type" content="规划高速" />
+        <Field name="dj" content="规划高速公路" />
+      </Label>
+      <Label name="高速连接线, 已建高速连接线">
+        <Field name="gb" content="420904" />
+        <Field name="code" content="420030" />
+        <Field name="type" content="高速连接线" />
+        <Field name="dj" content="已建高速连接线" />
+      </Label>
+      <Label name="高速连接线, 在建高速连接线">
+        <Field name="gb" content="420904" />
+        <Field name="code" content="420031" />
+        <Field name="type" content="高速连接线" />
+        <Field name="dj" content="在建高速连接线" />
+      </Label>
+    </Layer>
+    <Layer name="国省县道" heading="DJ">
+      <Label name="已建国道">
+        <Field name="gb" content="420101" />
+        <Field name="code" content="420110" />
+        <Field name="type" content="已建国道" />
+        <Field name="dj" content="已建国道" />
+      </Label>
+      <Label name="在建国道">
+        <Field name="gb" content="420102" />
+        <Field name="code" content="420120" />
+        <Field name="type" content="在建国道" />
+        <Field name="dj" content="在建国道" />
+      </Label>
+      <Label name="规划国道">
+        <Field name="gb" content="420103" />
+        <Field name="code" content="420130" />
+        <Field name="type" content="规划国道" />
+        <Field name="dj" content="规划国道" />
+      </Label>
+      <Label name="已建省道">
+        <Field name="gb" content="420201" />
+        <Field name="code" content="420210" />
+        <Field name="type" content="已建省道" />
+        <Field name="dj" content="已建省道" />
+      </Label>
+      <Label name="在建省道">
+        <Field name="gb" content="420202" />
+        <Field name="code" content="420220" />
+        <Field name="type" content="在建省道" />
+        <Field name="dj" content="在建省道" />
+      </Label>
+      <Label name="规划省道">
+        <Field name="gb" content="420203" />
+        <Field name="code" content="420230" />
+        <Field name="type" content="规划省道" />
+        <Field name="dj" content="规划省道" />
+      </Label>
+      <Label name="已建县道">
+        <Field name="gb" content="420301" />
+        <Field name="code" content="420310" />
+        <Field name="type" content="已建县道" />
+        <Field name="dj" content="已建县道" />
+      </Label>
+      <Label name="在建县道">
+        <Field name="gb" content="420302" />
+        <Field name="code" content="420320" />
+        <Field name="type" content="在建县道" />
+        <Field name="dj" content="在建县道" />
+      </Label>
+      <Label name="规划县道">
+        <Field name="gb" content="420303" />
+        <Field name="code" content="420330" />
+        <Field name="type" content="规划县道" />
+        <Field name="dj" content="规划县道" />
+      </Label>
+    </Layer>
+    <Layer name="交通附属设施_P" heading="DJ">
+      <Label name="客运站">
+        <Field name="gb" content="410301" />
+        <Field name="code" content="410311" />
+        <Field name="type" content="火车站" />
+        <Field name="dj" content="客运站" />
+      </Label>
+      <Label name="在建客运站">
+        <Field name="gb" content="410301" />
+        <Field name="code" content="410311" />
+        <Field name="type" content="火车站" />
+        <Field name="dj" content="在建客运站" />
+      </Label>
+      <Label name="其他站">
+        <Field name="gb" content="410301" />
+        <Field name="code" content="410312" />
+        <Field name="type" content="火车站" />
+        <Field name="dj" content="其他站" />
+      </Label>
+      <Label name="在建其他站">
+        <Field name="gb" content="410301" />
+        <Field name="code" content="410312" />
+        <Field name="type" content="火车站" />
+        <Field name="dj" content="在建其他站" />
+      </Label>
+      <Label name="地铁站">
+        <Field name="gb" content="410301" />
+        <Field name="code" content="410313" />
+        <Field name="type" content="火车站" />
+        <Field name="dj" content="地铁站" />
+      </Label>
+      <Label name="在建地铁站">
+        <Field name="gb" content="410301" />
+        <Field name="code" content="410313" />
+        <Field name="type" content="火车站" />
+        <Field name="dj" content="在建地铁站" />
+      </Label>
+      <Label name="已建高速出入口互通">
+        <Field name="gb" content="420700" />
+        <Field name="code" content="420701" />
+        <Field name="type" content="互通" />
+        <Field name="dj" content="已建高速出入口互通" />
+      </Label>
+      <Label name="已建高速枢纽互通">
+        <Field name="gb" content="420700" />
+        <Field name="code" content="420702" />
+        <Field name="type" content="互通" />
+        <Field name="dj" content="已建高速枢纽互通" />
+      </Label>
+      <Label name="在建高速枢纽互通">
+        <Field name="gb" content="420700" />
+        <Field name="code" content="420702" />
+        <Field name="type" content="互通" />
+        <Field name="dj" content="在建高速枢纽互通" />
+      </Label>
+      <Label name="规划高速枢纽互通">
+        <Field name="gb" content="420700" />
+        <Field name="code" content="420702" />
+        <Field name="type" content="互通" />
+        <Field name="dj" content="规划高速枢纽互通" />
+      </Label>
+      <Label name="汽车站">
+        <Field name="gb" content="450103" />
+        <Field name="code" content="450103" />
+        <Field name="type" content="汽车站" />
+        <Field name="dj" content="汽车站" />
+      </Label>
+      <Label name="入境收费站">
+        <Field name="gb" content="450106" />
+        <Field name="code" content="450116" />
+        <Field name="type" content="收费站" />
+        <Field name="dj" content="入境收费站" />
+      </Label>
+      <Label name="已建收费站">
+        <Field name="gb" content="450106" />
+        <Field name="code" content="450126" />
+        <Field name="type" content="收费站" />
+        <Field name="dj" content="已建收费站" />
+      </Label>
+      <Label name="在建收费站">
+        <Field name="gb" content="450106" />
+        <Field name="code" content="450126" />
+        <Field name="type" content="收费站" />
+        <Field name="dj" content="在建收费站" />
+      </Label>
+      <Label name="规划收费站">
+        <Field name="gb" content="450106" />
+        <Field name="code" content="450126" />
+        <Field name="type" content="收费站" />
+        <Field name="dj" content="在建收费站" />
+      </Label>
+      <Label name="服务区">
+        <Field name="gb" content="450107" />
+        <Field name="code" content="450107" />
+        <Field name="type" content="服务区" />
+        <Field name="dj" content="服务区" />
+      </Label>
+      <Label name="在建服务区">
+        <Field name="gb" content="450107" />
+        <Field name="code" content="450107" />
+        <Field name="type" content="服务区" />
+        <Field name="dj" content="在建服务区" />
+      </Label>
+      <Label name="铁路桥">
+        <Field name="gb" content="450300" />
+        <Field name="code" content="450311" />
+        <Field name="type" content="车行桥" />
+        <Field name="dj" content="铁路桥" />
+      </Label>
+      <Label name="高速公路桥">
+        <Field name="gb" content="450300" />
+        <Field name="code" content="450312" />
+        <Field name="type" content="车行桥" />
+        <Field name="dj" content="高速公路桥" />
+      </Label>
+      <Label name="其他桥">
+        <Field name="gb" content="450300" />
+        <Field name="code" content="450313" />
+        <Field name="type" content="车行桥" />
+        <Field name="dj" content="其他桥" />
+      </Label>
+      <Label name="铁路隧道">
+        <Field name="gb" content="450600" />
+        <Field name="code" content="450611" />
+        <Field name="type" content="隧道" />
+        <Field name="dj" content="铁路隧道" />
+      </Label>
+      <Label name="高速隧道">
+        <Field name="gb" content="450600" />
+        <Field name="code" content="450612" />
+        <Field name="type" content="隧道" />
+        <Field name="dj" content="高速隧道" />
+      </Label>
+      <Label name="其他隧道">
+        <Field name="gb" content="450600" />
+        <Field name="code" content="450613" />
+        <Field name="type" content="隧道" />
+        <Field name="dj" content="其他隧道" />
+      </Label>
+      <Label name="港口">
+        <Field name="gb" content="460100" />
+        <Field name="code" content="460111" />
+        <Field name="type" content="港口码头" />
+        <Field name="dj" content="港口" />
+      </Label>
+      <Label name="主要港区">
+        <Field name="gb" content="460100" />
+        <Field name="code" content="460111" />
+        <Field name="type" content="港口码头" />
+        <Field name="dj" content="港口" />
+      </Label>
+      <Label name="一般港区">
+        <Field name="gb" content="460100" />
+        <Field name="code" content="460111" />
+        <Field name="type" content="港口码头" />
+        <Field name="dj" content="港口" />
+      </Label>
+      <Label name="码头">
+        <Field name="gb" content="460100" />
+        <Field name="code" content="460112" />
+        <Field name="type" content="港口码头" />
+        <Field name="dj" content="码头" />
+      </Label>
+      <Label name="主要码头">
+        <Field name="gb" content="460100" />
+        <Field name="code" content="460112" />
+        <Field name="type" content="港口码头" />
+        <Field name="dj" content="码头" />
+      </Label>
+      <Label name="机场">
+        <Field name="gb" content="480100" />
+        <Field name="code" content="480100" />
+        <Field name="type" content="机场" />
+        <Field name="dj" content="机场" />
+      </Label>
+      <Label name="加油站">
+        <Field name="gb" content="450104" />
+        <Field name="code" content="450114" />
+        <Field name="type" content="加油站" />
+        <Field name="dj" content="加油站" />
+      </Label>
+      <Label name="加气站">
+        <Field name="gb" content="450104" />
+        <Field name="code" content="450124" />
+        <Field name="type" content="加气站" />
+        <Field name="dj" content="加气站" />
+      </Label>
+      <Label name="停车场">
+        <Field name="gb" content="450105" />
+        <Field name="code" content="450105" />
+        <Field name="type" content="停车场" />
+        <Field name="dj" content="停车场" />
+      </Label>
+      <Label name="立交桥">
+        <Field name="gb" content="450308" />
+        <Field name="code" content="450308" />
+        <Field name="type" content="立交桥" />
+        <Field name="dj" content="立交桥" />
+      </Label>
+      <Label name="索道">
+        <Field name="gb" content="490301" />
+        <Field name="code" content="490301" />
+        <Field name="type" content="索道" />
+        <Field name="dj" content="索道" />
+      </Label>
+      <Label name="人渡轮渡航线">
+        <Field name="gb" content="490503" />
+        <Field name="code" content="490503" />
+        <Field name="type" content="人渡轮渡航线" />
+        <Field name="dj" content="人渡轮渡航线" />
+      </Label>
+    </Layer>
+    <Layer name="其他道路" heading="DJ">
+      <Label name="机耕路（大路）">
+        <Field name="gb" content="440100" />
+        <Field name="code" content="440100" />
+        <Field name="type" content="其他道路" />
+        <Field name="dj" content="机耕路（大路）" />
+      </Label>
+      <Label name="小路">
+        <Field name="gb" content="440300" />
+        <Field name="code" content="440300" />
+        <Field name="type" content="其他道路" />
+        <Field name="dj" content="小路" />
+      </Label>
+    </Layer>
+    <Layer name="匝道辅道" heading="DJ">
+      <Label name="高速匝道">
+        <Field name="gb" content="420600" />
+        <Field name="code" content="420601" />
+        <Field name="type" content="匝道" />
+        <Field name="dj" content="高速匝道" />
+      </Label>
+      <Label name="在建高速匝道">
+        <Field name="gb" content="420600" />
+        <Field name="code" content="420611" />
+        <Field name="type" content="匝道" />
+        <Field name="dj" content="在建高速匝道" />
+      </Label>
+      <Label name="其他匝道">
+        <Field name="gb" content="420600" />
+        <Field name="code" content="420602" />
+        <Field name="type" content="匝道" />
+        <Field name="dj" content="其他匝道" />
+      </Label>
+      <Label name="在建其他匝道">
+        <Field name="gb" content="420600" />
+        <Field name="code" content="420603" />
+        <Field name="type" content="匝道" />
+        <Field name="dj" content="在建其他匝道" />
+      </Label>
+      <Label name="辅道">
+        <Field name="gb" content="430400" />
+        <Field name="code" content="430400" />
+        <Field name="type" content="辅道" />
+        <Field name="dj" content="辅道" />
+      </Label>
+    </Layer>
+        <Layer name="河流" heading="DJ">
+      <Label name="河流1W（干流）">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210000" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="河流1W（干流）" />
+      </Label>
+      <Label name="一级河流|一级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210001" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="一级河流|一级支流" />
+      </Label>
+      <Label name="二级河流|二级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210002" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="二级河流|二级支流" />
+      </Label>
+      <Label name="三级河流|三级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210003" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="三级河流|三级支流" />
+      </Label>
+      <Label name="四级河流|四级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210004" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="四级河流|四级支流" />
+      </Label>
+      <Label name="五级河流|五级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210005" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="五级河流|五级支流" />
+      </Label>
+      <Label name="六级河流|六级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210006" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="六级河流|六级支流" />
+      </Label>
+      <Label name="七级河流|七级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210007" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="七级河流|七级支流" />
+      </Label>
+      <Label name="八级河流|八级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210008" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="八级河流|八级支流" />
+      </Label>
+      <Label name="九级河流|九级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210009" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="九级河流|九级支流" />
+      </Label>
+      <Label name="十级河流|十级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210010" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="十级河流|十级支流" />
+      </Label>
+      <Label name="十一级河流|十一级支流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210011" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="十一级河流|十一级支流" />
+      </Label>
+      <Label name="十二级河流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210012" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="十二级河流" />
+      </Label>
+      <Label name="十三级河流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210013" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="十三级河流" />
+      </Label>
+      <Label name="十四级河流">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210014" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="十四级河流" />
+      </Label>
+      <Label name="其他河流（河流1W）">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210114" />
+        <Field name="type" content="单线河流" />
+        <Field name="dj" content="其他河流（河流1W）" />
+      </Label>
+    </Layer>
+    <Layer name="水渠" heading="DJ">
+      <Label name="主要渠">
+        <Field name="gb" content="220000" />
+        <Field name="code" content="220001" />
+        <Field name="type" content="渠" />
+        <Field name="dj" content="主要渠" />
+      </Label>
+      <Label name="次要渠">
+        <Field name="gb" content="220000" />
+        <Field name="code" content="220002" />
+        <Field name="type" content="渠" />
+        <Field name="dj" content="次要渠" />
+      </Label>
+    </Layer>
+    <Layer name="乡道" heading="DJ">
+      <Label name="已建乡道">
+        <Field name="gb" content="420400" />
+        <Field name="code" content="420401" />
+        <Field name="type" content="乡道" />
+        <Field name="dj" content="已建乡道" />
+      </Label>
+      <Label name="规划乡道">
+        <Field name="gb" content="420400" />
+        <Field name="code" content="420402" />
+        <Field name="type" content="乡道" />
+        <Field name="dj" content="规划乡道" />
+      </Label>
+    </Layer>
+    <Layer name="面状水域" heading="TYPE, DJ">
+      <Label name="双线河流, 一级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210001" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="一级河流水域" />
+      </Label>
+      <Label name="双线河流, 二级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210002" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="二级河流水域" />
+      </Label>
+      <Label name="双线河流, 三级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210003" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="三级河流水域" />
+      </Label>
+      <Label name="双线河流, 四级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210004" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="四级河流水域" />
+      </Label>
+      <Label name="双线河流, 五级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210005" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="五级河流水域" />
+      </Label>
+      <Label name="双线河流, 六级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210006" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="六级河流水域" />
+      </Label>
+      <Label name="双线河流, 七级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210007" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="七级河流水域" />
+      </Label>
+      <Label name="双线河流, 八级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210008" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="八级河流水域" />
+      </Label>
+      <Label name="双线河流, 九级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210009" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="九级河流水域" />
+      </Label>
+      <Label name="双线河流, 十级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210010" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="十级河流水域" />
+      </Label>
+      <Label name="双线河流, 十一级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210011" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="十一级河流水域" />
+      </Label>
+      <Label name="双线河流, 十二级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210012" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="十二级河流水域" />
+      </Label>
+      <Label name="双线河流, 十三级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210013" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="十三级河流水域" />
+      </Label>
+      <Label name="双线河流, 十四级河流水域">
+        <Field name="gb" content="210000" />
+        <Field name="code" content="210014" />
+        <Field name="type" content="双线河流" />
+        <Field name="dj" content="十四级河流水域" />
+      </Label>
+      <Label name="湖泊池塘, 一级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230001" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="一级水域" />
+      </Label>
+      <Label name="湖泊池塘, 二级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230002" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="二级水域" />
+      </Label>
+      <Label name="湖泊池塘, 三级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230003" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="三级水域" />
+      </Label>
+      <Label name="湖泊池塘, 四级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230004" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="四级水域" />
+      </Label>
+      <Label name="湖泊池塘, 五级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230005" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="五级水域" />
+      </Label>
+      <Label name="湖泊池塘, 六级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230006" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="六级水域" />
+      </Label>
+      <Label name="湖泊池塘, 七级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230007" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="七级水域" />
+      </Label>
+      <Label name="湖泊池塘, 八级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230008" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="八级水域" />
+      </Label>
+      <Label name="湖泊池塘, 九级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230009" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="九级水域" />
+      </Label>
+      <Label name="湖泊池塘, 十级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230010" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="十级水域" />
+      </Label>
+      <Label name="湖泊池塘, 十一级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230011" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="十一级水域" />
+      </Label>
+      <Label name="湖泊池塘, 十二级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230012" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="十二级水域" />
+      </Label>
+      <Label name="湖泊池塘, 十三级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230013" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="十三级水域" />
+      </Label>
+      <Label name="湖泊池塘, 十四级水域">
+        <Field name="gb" content="230000" />
+        <Field name="code" content="230014" />
+        <Field name="type" content="湖泊池塘" />
+        <Field name="dj" content="十四级水域" />
+      </Label>
+      <Label name="水库, 一级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240001" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="一级水域" />
+      </Label>
+      <Label name="水库, 二级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240002" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="二级水域" />
+      </Label>
+      <Label name="水库, 三级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240003" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="三级水域" />
+      </Label>
+      <Label name="水库, 四级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240004" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="四级水域" />
+      </Label>
+      <Label name="水库, 五级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240005" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="五级水域" />
+      </Label>
+      <Label name="水库, 六级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240006" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="六级水域" />
+      </Label>
+      <Label name="水库, 七级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240007" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="七级水域" />
+      </Label>
+      <Label name="水库, 八级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240008" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="八级水域" />
+      </Label>
+      <Label name="水库, 九级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240009" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="九级水域" />
+      </Label>
+      <Label name="水库, 十级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240010" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十级水域" />
+      </Label>
+      <Label name="水库, 十一级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240011" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十一级水域" />
+      </Label>
+      <Label name="水库, 十二级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240012" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十二级水域" />
+      </Label>
+      <Label name="水库, 十三级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240013" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十三级水域" />
+      </Label>
+      <Label name="水库, 十四级水域">
+        <Field name="gb" content="240000" />
+        <Field name="code" content="240014" />
+        <Field name="type" content="水库" />
+        <Field name="dj" content="十四级水域" />
+      </Label>
+    </Layer>
+  </AutoFillBackground>
+</AutoFill>

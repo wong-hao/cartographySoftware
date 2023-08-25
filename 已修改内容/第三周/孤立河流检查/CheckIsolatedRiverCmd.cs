@@ -34,11 +34,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             IGeoFeatureLayer hydlLyr = m_Application.Workspace.LayerManager.GetLayer(new LayerManager.LayerChecker(l =>
             {
-                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "HYDL");
+                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "河流");
             })).ToArray().First() as IGeoFeatureLayer;
             if (hydlLyr == null)
             {
-                MessageBox.Show("缺少HYDL要素类！");
+                MessageBox.Show("缺少河流要素类！");
                 return;
             }
             IFeatureClass fc = hydlLyr.FeatureClass;

@@ -184,7 +184,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(225, 20);
             this.comboBox1.TabIndex = 30;
-            this.comboBox1.Text = "HGB < 210400";
             // 
             // CheckIsolatedRiverFrm
             // 
