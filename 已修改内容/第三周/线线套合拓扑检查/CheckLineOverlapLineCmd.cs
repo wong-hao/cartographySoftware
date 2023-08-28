@@ -55,6 +55,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             #region 读取配置
             //读取检查配置文件
             ReadConfig();
+
             if (ruleDataTable.Rows.Count == 0)
             {
                 MessageBox.Show("质检内容配置表不存在或内容为空！");
@@ -154,7 +155,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 if (plSSFC == null || plGLFC == null)
                 {
                     //return new ResultMessage { stat = ResultState.Failed, msg = String.Format("{0} {1} 有空图层", plSSName, plGLName) };
-                    continue;                    
+                    continue;
                 }
 
                 ISpatialReference plSSRF = (plSSFC as IGeoDataset).SpatialReference;
@@ -168,21 +169,22 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     IQueryFilter ssQF = new QueryFilterClass();
                     // ssQF.WhereClause = plSSFC.HasCollabField() ? plSSSQL + " and " + cmdUpdateRecord.CurFeatureFilter : plSSSQL;
                     ssQF.WhereClause = plSSSQL + " and " + cmdUpdateRecord.CurFeatureFilter;
+
                     IFeatureCursor feSSCursor = plSSFC.Search(ssQF, false);
                     IFeature feSS = null;
                     int idxSSGB = plSSFC.Fields.FindField("GB");
                     while ((feSS = feSSCursor.NextFeature()) != null)
                     {
                         String ssIDstr = feSS.OID.ToString();
-                        
+
                         //pwindow
 
                         ISpatialFilter pFilter = new SpatialFilterClass();
                         pFilter.Geometry = feSS.ShapeCopy;
                         pFilter.GeometryField = plSSFC.ShapeFieldName;
-                        pFilter.SpatialRel = esriSpatialRelEnum.esriSpatialRelWithin ;//空间关系
-                        //pFilter.WhereClause = plGLFC.HasCollabField() ? plGLSQL + " and " + cmdUpdateRecord.CurFeatureFilter : plGLSQL;
-                        pFilter.WhereClause = plGLFC + " and " + cmdUpdateRecord.CurFeatureFilter;
+                        pFilter.SpatialRel = esriSpatialRelEnum.esriSpatialRelWithin;//空间关系
+                        // pFilter.WhereClause = plGLFC.HasCollabField() ? plGLSQL + " and " + cmdUpdateRecord.CurFeatureFilter : plGLSQL;
+                        pFilter.WhereClause = plGLSQL + " and " + cmdUpdateRecord.CurFeatureFilter;
 
                         IFeature feGL = null;
                         IFeatureCursor feGLCursor = plGLFC.Search(pFilter, false);
@@ -199,7 +201,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                             IPolyline pl = feSS.ShapeCopy as IPolyline;
                             ErrLineOverLineRelation errLineOverLine = new ErrLineOverLineRelation()
                             {
-                                PlSSLayerName = plSSName, 
+                                PlSSLayerName = plSSName,
                                 PlSSID = ssIDstr,
                                 RelLayerName = plGLName,
                                 RelName = "LineOverLine", //空间关系名
@@ -208,10 +210,10 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                             };
                             ErrLineOverLineList.Add(errLineOverLine);
                             _sbResult.Append(str);
-                        }     
- 
+                        }
+
                     }
- 
+
                 }
                 catch (Exception ex)
                 {
@@ -222,7 +224,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             }
             return new ResultMessage { stat = ResultState.Ok };
- 
+
         }
 
         public static ResultMessage SaveResult(string dir, bool autoOver = false, bool toGdb = false)
