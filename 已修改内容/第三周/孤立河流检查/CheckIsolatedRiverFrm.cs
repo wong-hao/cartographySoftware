@@ -105,7 +105,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 }
             }
 
-            _sqlText = comboBox1.Text;
+            _sqlText = comboBox1.SelectedItem.ToString();
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
@@ -138,6 +138,15 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             Marshal.ReleaseComObject(featureCursor);
 
             return sr;
+        }
+
+        private void CheckIsolatedRiverFrm_Load(object sender, EventArgs e)
+        {
+            // 在构造函数或 Load 事件中添加选项
+            comboBox1.Items.Add("GB = 210000");
+
+            // 选择默认项（可选）
+            comboBox1.SelectedIndex = 0; // 默认选中第一个选项，如果需要选择第二个选项，将索引设置为 1
         }
 
         

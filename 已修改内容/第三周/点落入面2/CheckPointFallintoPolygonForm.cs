@@ -118,7 +118,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             var fd = new FolderBrowserDialog();
             if (fd.ShowDialog() == DialogResult.OK && fd.SelectedPath.Length > 0)
             {
-                btnOutputPath.Text = fd.SelectedPath;
+                tbOutFilePath.Text = fd.SelectedPath;
             }
         }
 

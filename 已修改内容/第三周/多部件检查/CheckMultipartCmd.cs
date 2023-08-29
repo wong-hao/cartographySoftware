@@ -39,11 +39,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             string outputFileName;
             if (frm.CheckFeatureLayerList.Count > 1)
             {
-                outputFileName = OutputSetup.GetDir() + string.Format("\\{0}.shp", frm.Text);
+                outputFileName = frm.OutputPath + string.Format("\\{0}.shp", frm.Text);
             }
             else
             {
-                outputFileName = OutputSetup.GetDir() + string.Format("\\{0}_{1}.shp", frm.Text, frm.CheckFeatureLayerList.First().Name);
+                outputFileName = frm.OutputPath + string.Format("\\{0}_{1}.shp", frm.Text, frm.CheckFeatureLayerList.First().Name);
             }
 
 

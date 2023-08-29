@@ -32,7 +32,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             if (frm.ShowDialog() != DialogResult.OK)
                 return;
 
-            string outputFileName = OutputSetup.GetDir() + string.Format("\\点落入面检查_{0}.shp", frm.PointFeatureClass.AliasName);
+            string outputFileName = frm.ResultOutputFilePath + string.Format("\\点落入面检查_{0}.shp", frm.PointFeatureClass.AliasName);
 
             string err = "";
             using (var wo = m_Application.SetBusy())

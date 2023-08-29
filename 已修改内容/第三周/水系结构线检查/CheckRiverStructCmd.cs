@@ -29,6 +29,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
         }
 
+        public String roadLyrName;
+
         public override void OnClick()
         {
             if (m_Application.MapControl.Map.ReferenceScale == 0)
@@ -45,24 +47,26 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             double maxDist = 0.12 * m_Application.MapControl.Map.ReferenceScale * 0.001; //0.12mm为图面限差
 
+            roadLyrName = frm.roadLyrName;
+
             IGeoFeatureLayer hydlLyr = m_Application.Workspace.LayerManager.GetLayer(new LayerManager.LayerChecker(l =>
             {
-                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "HYDL");
+                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == roadLyrName);
             })).ToArray().First() as IGeoFeatureLayer;
             if (hydlLyr == null)
             {
-                MessageBox.Show("缺少HYDL要素类！");
+                MessageBox.Show("缺少" + roadLyrName + "要素类！");
                 return;
             }
             IFeatureClass hydlFC = hydlLyr.FeatureClass;
 
             IGeoFeatureLayer hydaLyr = m_Application.Workspace.LayerManager.GetLayer(new LayerManager.LayerChecker(l =>
             {
-                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "HYDA");
+                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "面状水域");
             })).ToArray().First() as IGeoFeatureLayer;
             if (hydaLyr == null)
             {
-                MessageBox.Show("缺少HYDA要素类！");
+                MessageBox.Show("缺少面状水域要素类！");
                 return;
             }
             IFeatureClass hydaFC = hydaLyr.FeatureClass;
@@ -76,7 +80,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             {
                 if (!frm.BIgnoreSmall)
                     maxDist = 0.1;
-                err = DoCheck(outPutFileName, hydlFC, hydaFC, frm.BNonRiverStruct, frm.BRiverStruct, frm.BIgnoreSmall,maxDist, wo);
+                err = DoCheck(outPutFileName, hydlFC, hydaFC, frm.BIgnoreSmall, maxDist, wo);
             }
 
             if (err == "")
@@ -101,20 +105,16 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
         /// <summary>
         /// 检查水系结构线位置是否合理：
-        /// 1.非水系结构线在水系面存在相交关系，或在水系面内；
-        /// 2.水系结构线与水系面存在相交关系、或在水系面外；
-        /// 3.水系交叉阈值。
+        /// 1.水系结构线与水系面存在相交关系、或在水系面外；
+        /// 2.水系交叉阈值。
         /// </summary>
         /// <param name="resultSHPFileName"></param>
         /// <param name="hydlFC"></param>
         /// <param name="hydaFC"></param>
-        /// <param name="bNonStruct">是否检查完全包含于自然河流面内的非水系结构线</param>
-        /// <param name="bStruct">是否检查与水系面相交（横跨）的水系结构线</param>
         /// <param name="bIgnoreSmall">是否使用小阈值</param>
         /// <param name="wo"></param>
         /// <returns></returns>
-        public static string DoCheck(string resultSHPFileName, IFeatureClass hydlFC, IFeatureClass hydaFC, 
-            bool bNonStruct, bool bStruct, bool bIgnoreSmall, double maxDistance,WaitOperation wo = null)
+        public static string DoCheck(string resultSHPFileName, IFeatureClass hydlFC, IFeatureClass hydaFC, bool bIgnoreSmall, double maxDistance, WaitOperation wo = null)
         {
             string err = "";
 
@@ -131,7 +131,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 err = string.Format("要素类【{0}】中没有找到GB字段！", hydaFC.AliasName);
                 return err;
             }
-                        
+
             string fullPath = DCDHelper.GetAppDataPath() + "\\MyWorkspace.gdb";
             IWorkspace ws = DCDHelper.createTempWorkspace(fullPath);
             IFeatureWorkspace fws = ws as IFeatureWorkspace;
@@ -158,9 +158,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 makeFeatureLayer.out_layer = outFCLyr;
                 SMGI.Common.Helper.ExecuteGPTool(gp, makeFeatureLayer, null);
                 selectLayerByAttribute.in_layer_or_view = outFCLyr;
-               //  selectLayerByAttribute.where_clause = "GB <= 240101";
+                selectLayerByAttribute.where_clause = "TYPE = '双线河流'";
                 // if (hydaFC.HasCollabField())
-                    selectLayerByAttribute.where_clause += cmdUpdateRecord.CurFeatureFilter;
+                    selectLayerByAttribute.where_clause += " and " + cmdUpdateRecord.CurFeatureFilter;
                 SMGI.Common.Helper.ExecuteGPTool(gp, selectLayerByAttribute, null);
 
                 ESRI.ArcGIS.DataManagementTools.Dissolve diss = new ESRI.ArcGIS.DataManagementTools.Dissolve();
@@ -174,130 +174,66 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
             catch (Exception ex)
             {
-                return "合并HYDA失败！";
+                return "合并面状水域失败！";
             }
             #endregion
-            if (bStruct)
+
+            if (wo != null)
+                wo.SetText("2-水系结构线与水系面检查......");
+            #region 水系结构线
+            try
             {
-                if (wo != null)
-                    wo.SetText("2-水系结构线与水系面检查......");
-                #region 水系结构线
-                try
-                {
-                    Geoprocessor gp = new Geoprocessor();
-                    gp.OverwriteOutput = true;
-                    gp.SetEnvironmentValue("workspace", ws.PathName);
+                Geoprocessor gp = new Geoprocessor();
+                gp.OverwriteOutput = true;
+                gp.SetEnvironmentValue("workspace", ws.PathName);
 
-                    string outFCLyr = hydlFC.AliasName + "_Layer";
+                string outFCLyr = hydlFC.AliasName + "_Layer";
 
-                    MakeFeatureLayer makeFeatureLayer = new MakeFeatureLayer();
-                    makeFeatureLayer.in_features = hydlFC;
-                    /*
-                    makeFeatureLayer.where_clause = "GB=210400";
-                    if (hydlFC.HasCollabField())
-                     */
-
+                MakeFeatureLayer makeFeatureLayer = new MakeFeatureLayer();
+                makeFeatureLayer.in_features = hydlFC;
+                // makeFeatureLayer.where_clause = "";
+                // if (hydlFC.HasCollabField())
                     makeFeatureLayer.where_clause += cmdUpdateRecord.CurFeatureFilter;
-                    makeFeatureLayer.out_layer = outFCLyr;
-                    SMGI.Common.Helper.ExecuteGPTool(gp, makeFeatureLayer, null);
+                makeFeatureLayer.out_layer = outFCLyr;
+                SMGI.Common.Helper.ExecuteGPTool(gp, makeFeatureLayer, null);
 
-                    Erase erase = new Erase();
-                    erase.in_features = outFCLyr;
-                    erase.erase_features = hydaFC2;
-                    string hydlErase = hydlFC.AliasName + "_Erase";
-                    erase.out_feature_class = hydlErase;
-                    SMGI.Common.Helper.ExecuteGPTool(gp, erase, null);
+                Erase erase = new Erase();
+                erase.in_features = outFCLyr;
+                erase.erase_features = hydaFC2;
+                string hydlErase = hydlFC.AliasName + "_Erase";
+                erase.out_feature_class = hydlErase;
+                SMGI.Common.Helper.ExecuteGPTool(gp, erase, null);
 
-                    IFeatureClass hydlFCErase = fws.OpenFeatureClass(hydlErase);
+                IFeatureClass hydlFCErase = fws.OpenFeatureClass(hydlErase);
 
 
-                    IFeatureCursor hydlEraseCursor = hydlFCErase.Search(null, true);
-                    int guidindex = hydlFCErase.FindField(ServerDataInitializeCommand.CollabGUID);
-                    string guid;
-                    string info = "结构线在水系面外";
+                IFeatureCursor hydlEraseCursor = hydlFCErase.Search(null, true);
+                int guidindex = hydlFCErase.FindField(ServerDataInitializeCommand.CollabGUID);
+                string guid;
+                string info = "结构线在水系面外";
 
-                    IFeature hydlFe = null;
-                    while ((hydlFe = hydlEraseCursor.NextFeature()) != null)
+                IFeature hydlFe = null;
+                while ((hydlFe = hydlEraseCursor.NextFeature()) != null)
+                {
+                    guid = "";
+                    if (guidindex > -1)
+                        guid = hydlFe.get_Value(guidindex).ToString();
+                    IList<IGeometry> geoList = GetGeoParts(hydlFe.ShapeCopy, maxDistance);
+                    if (geoList.Count > 0)
                     {
-                        guid = "";
-                        if (guidindex > -1)
-                            guid = hydlFe.get_Value(guidindex).ToString();
-                        IList<IGeometry> geoList = GetGeoParts(hydlFe.ShapeCopy, maxDistance);
-                        if (geoList.Count > 0)
+                        foreach (IGeometry geoTemp in geoList)
                         {
-                            foreach (IGeometry geoTemp in geoList)
-                            {
-                                Tuple<string, string, IGeometry> tp = new Tuple<string, string, IGeometry>(guid, info, geoTemp);
-                                errList.Add(tp);
-                            }
+                            Tuple<string, string, IGeometry> tp = new Tuple<string, string, IGeometry>(guid, info, geoTemp);
+                            errList.Add(tp);
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    return "水系面擦除结构线失败！";
-                }
-                #endregion
             }
-            if (bNonStruct)
+            catch (Exception ex)
             {
-                if (wo != null)
-                    wo.SetText("3-非水系结构线与水系面检查......");
-                #region 非水系结构线
-                try
-                {
-                    Geoprocessor gp = new Geoprocessor();
-                    gp.OverwriteOutput = true;
-                    gp.SetEnvironmentValue("workspace", ws.PathName);
-
-                    string outFCLyr = hydlFC.AliasName + "_Layer";
-
-                    MakeFeatureLayer makeFeatureLayer = new MakeFeatureLayer();
-                    makeFeatureLayer.in_features = hydlFC;
-                    // makeFeatureLayer.where_clause = "GB<>210400";
-                    // if (hydlFC.HasCollabField())
-                        makeFeatureLayer.where_clause += cmdUpdateRecord.CurFeatureFilter;
-                    makeFeatureLayer.out_layer = outFCLyr;
-                    SMGI.Common.Helper.ExecuteGPTool(gp, makeFeatureLayer, null);
-
-                    ESRI.ArcGIS.AnalysisTools.Clip clip = new ESRI.ArcGIS.AnalysisTools.Clip();
-                    clip.in_features = outFCLyr;
-                    clip.clip_features = hydaFC2;
-                    string hydlClip = hydlFC.AliasName + "_Clip";
-                    clip.out_feature_class = hydlClip;
-                    SMGI.Common.Helper.ExecuteGPTool(gp, clip, null);
-
-                    IFeatureClass hydlFCClip = fws.OpenFeatureClass(hydlClip);
-
-                    IFeatureCursor hydlClipCursor = hydlFCClip.Search(null, true);
-                    IFeature hydlFe = null;
-                    int guidindex = hydlFCClip.FindField(ServerDataInitializeCommand.CollabGUID);
-                    string guid;
-
-                    string info = "非结构线在水系面内";
-                    while ((hydlFe = hydlClipCursor.NextFeature()) != null)
-                    {
-                        IList<IGeometry> geoList = GetGeoParts(hydlFe.ShapeCopy, maxDistance);
-                        if (geoList.Count > 0)
-                        {
-                            guid = "";
-                            if (guidindex > -1)
-                                guid = hydlFe.get_Value(guidindex).ToString();
-                            foreach (IGeometry geoTemp in geoList)
-                            {
-                                Tuple<string, string, IGeometry> tp = new Tuple<string, string, IGeometry>(guid, info, geoTemp);
-                                errList.Add(tp);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return "水系面裁切非结构线失败！";
-                }
-                #endregion
+                return "水系面擦除结构线失败！";
             }
-
+            #endregion
             
             {
                 if (wo != null)
@@ -322,7 +258,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                         IGeometry geo = item.Item3;
                         resultFile.addErrorGeometry(geo, fieldName2FieldValue);
                     }
-                } 
+                }
             }
 
             /*
@@ -496,12 +432,12 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             return err;
         }
 
-        public static IList<IGeometry> GetGeoParts(IGeometry geo,double dist=0.0)
-        {            
+        public static IList<IGeometry> GetGeoParts(IGeometry geo, double dist = 0.0)
+        {
             IList<IGeometry> geoList = new List<IGeometry>();
             IGeometryCollection geoColl = geo as IGeometryCollection;
 
-            
+
             if (geoColl != null)
             {
                 if (geoColl.GeometryCount == 1)

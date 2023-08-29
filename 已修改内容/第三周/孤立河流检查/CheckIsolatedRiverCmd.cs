@@ -112,7 +112,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 //qf.WhereClause = "hgb<210400";
                 qf.WhereClause = SQLText;
                 // if (fc.HasCollabField())
-                    qf.WhereClause += cmdUpdateRecord.CurFeatureFilter;
+                    qf.WhereClause += " and " + cmdUpdateRecord.CurFeatureFilter;
                 IFeatureCursor feCursor = fc.Search(qf, false);
                 int feCount = fc.FeatureCount(qf);
 

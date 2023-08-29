@@ -178,8 +178,6 @@
             // 
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "HGB < 210400"});
             this.comboBox1.Location = new System.Drawing.Point(81, 148);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(225, 20);
@@ -203,6 +201,7 @@
             this.Name = "CheckIsolatedRiverFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "孤立河流检查";
+            this.Load += new System.EventHandler(this.CheckIsolatedRiverFrm_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

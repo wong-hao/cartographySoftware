@@ -33,8 +33,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btCancel = new System.Windows.Forms.Button();
             this.cbCheckIgnoreSmall = new System.Windows.Forms.CheckBox();
-            this.cbCheckNonStruct = new System.Windows.Forms.CheckBox();
-            this.cbCheckStruct = new System.Windows.Forms.CheckBox();
+            this.roadLyrNameComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 111);
+            this.panel1.Location = new System.Drawing.Point(0, 70);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(302, 31);
@@ -85,50 +85,45 @@
             this.cbCheckIgnoreSmall.AutoSize = true;
             this.cbCheckIgnoreSmall.Checked = true;
             this.cbCheckIgnoreSmall.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCheckIgnoreSmall.Location = new System.Drawing.Point(12, 79);
+            this.cbCheckIgnoreSmall.Location = new System.Drawing.Point(12, 12);
             this.cbCheckIgnoreSmall.Name = "cbCheckIgnoreSmall";
             this.cbCheckIgnoreSmall.Size = new System.Drawing.Size(132, 16);
             this.cbCheckIgnoreSmall.TabIndex = 10;
             this.cbCheckIgnoreSmall.Text = "忽略小于容差的部分";
             this.cbCheckIgnoreSmall.UseVisualStyleBackColor = true;
             // 
-            // cbCheckNonStruct
+            // roadLyrNameComboBox
             // 
-            this.cbCheckNonStruct.AutoSize = true;
-            this.cbCheckNonStruct.Checked = true;
-            this.cbCheckNonStruct.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCheckNonStruct.Location = new System.Drawing.Point(12, 12);
-            this.cbCheckNonStruct.Name = "cbCheckNonStruct";
-            this.cbCheckNonStruct.Size = new System.Drawing.Size(180, 16);
-            this.cbCheckNonStruct.TabIndex = 10;
-            this.cbCheckNonStruct.Text = "检查水系面中的非水系结构线";
-            this.cbCheckNonStruct.UseVisualStyleBackColor = true;
+            this.roadLyrNameComboBox.FormattingEnabled = true;
+            this.roadLyrNameComboBox.Location = new System.Drawing.Point(105, 39);
+            this.roadLyrNameComboBox.Name = "roadLyrNameComboBox";
+            this.roadLyrNameComboBox.Size = new System.Drawing.Size(121, 20);
+            this.roadLyrNameComboBox.TabIndex = 11;
+            this.roadLyrNameComboBox.SelectedIndexChanged += new System.EventHandler(this.roadLyrNameComboBox_SelectedIndexChanged);
             // 
-            // cbCheckStruct
+            // label1
             // 
-            this.cbCheckStruct.AutoSize = true;
-            this.cbCheckStruct.Checked = true;
-            this.cbCheckStruct.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCheckStruct.Location = new System.Drawing.Point(12, 44);
-            this.cbCheckStruct.Name = "cbCheckStruct";
-            this.cbCheckStruct.Size = new System.Drawing.Size(168, 16);
-            this.cbCheckStruct.TabIndex = 10;
-            this.cbCheckStruct.Text = "检查水系面外的水系结构线";
-            this.cbCheckStruct.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "选择水系线图层";
             // 
             // CheckRiverStructFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 142);
-            this.Controls.Add(this.cbCheckNonStruct);
-            this.Controls.Add(this.cbCheckStruct);
+            this.ClientSize = new System.Drawing.Size(302, 101);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.roadLyrNameComboBox);
             this.Controls.Add(this.cbCheckIgnoreSmall);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CheckRiverStructFrm";
-            this.Text = "水系线面检查";
+            this.Text = "水系结构线检查";
+            this.Load += new System.EventHandler(this.CheckRiverStructFrm_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,7 +137,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.CheckBox cbCheckIgnoreSmall;
-        private System.Windows.Forms.CheckBox cbCheckNonStruct;
-        private System.Windows.Forms.CheckBox cbCheckStruct;
+        private System.Windows.Forms.ComboBox roadLyrNameComboBox;
+        private System.Windows.Forms.Label label1;
     }
 }
