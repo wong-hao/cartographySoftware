@@ -42,6 +42,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             // 在构造函数或 Load 事件中添加选项
             roadLyrNameComboBox.Items.Add("水渠");
             roadLyrNameComboBox.Items.Add("河流");
+            roadLyrName = String.Empty;
 
             // 选择默认项（可选）
             roadLyrNameComboBox.SelectedIndex = 0; // 默认选中第一个选项，如果需要选择第二个选项，将索引设置为 1

@@ -25,6 +25,14 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
     /// </summary>
     public class DCDHelper
     {
+        public static long MaxMem
+        {
+            get
+            {
+                return 1024 * 1024 * 700;//字节
+            }
+        }
+
         /// <summary>
         ///  从mdb提取表
         /// </summary>

@@ -191,9 +191,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
                 MakeFeatureLayer makeFeatureLayer = new MakeFeatureLayer();
                 makeFeatureLayer.in_features = hydlFC;
-                // makeFeatureLayer.where_clause = "";
+                makeFeatureLayer.where_clause = "GB = 210000 or GB = 220000";
                 // if (hydlFC.HasCollabField())
-                    makeFeatureLayer.where_clause += cmdUpdateRecord.CurFeatureFilter;
+                    makeFeatureLayer.where_clause += " and " + cmdUpdateRecord.CurFeatureFilter;
                 makeFeatureLayer.out_layer = outFCLyr;
                 SMGI.Common.Helper.ExecuteGPTool(gp, makeFeatureLayer, null);
 
