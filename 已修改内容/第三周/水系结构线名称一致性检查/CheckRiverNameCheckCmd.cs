@@ -36,6 +36,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
         Dictionary<string, string> gbsDic = new Dictionary<string, string>();
         public String roadLyrName;
+        public static String areaLryName = "面状水域";
         public String checkField;
         double len = 100;
         public override void OnClick()
@@ -48,14 +49,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             roadLyrName = frm.roadLyrName;
             checkField = frm.checkField;
 
-            if (roadLyrName == "河流")
-            {
-                gbsDic["210000"] = "";
-            }
-            else if (roadLyrName == "水渠")
-            {
-                gbsDic["220000"] = "";
-            }
+            gbsDic["210000"] = "";
+            gbsDic["220000"] = "";
 
             var hydlLyr = m_Application.Workspace.LayerManager.GetLayer((l =>
             {
@@ -70,18 +65,18 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             var hydaLyr = m_Application.Workspace.LayerManager.GetLayer((l =>
             {
-                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "面状水域");
+                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == areaLryName);
             })).FirstOrDefault();
             if (hydaLyr == null)
             {
-                MessageBox.Show("缺少面状水域要素类！");
+                MessageBox.Show("缺少" + areaLryName + "要素类！");
                 return;
             }
             IFeatureClass fchyda = (hydaLyr as IFeatureLayer).FeatureClass;
 
-            if (string.IsNullOrEmpty(checkField))
+            if ((fc.FindField(checkField) == -1) || (fchyda.FindField(checkField) == -1))
             {
-                MessageBox.Show("缺少需要检查的名称字段！");
+                MessageBox.Show("需要检查的名称字段" + checkField + "有误！");
                 return;
             }
 
@@ -158,7 +153,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                     string name1 = f.get_Value(fchyda.FindField(checkField)).ToString();
                                     if ((name1 != name))
                                     {
-                                        errsDic[fe.OID] = roadLyrName + ":" + fe.OID + "与面状水域：" + f.OID + "的字段【" + checkField + "】不一致";
+                                        errsDic[fe.OID] = roadLyrName + ":" + fe.OID + "与" + areaLryName +"：" + f.OID + "的字段【" + checkField + "】不一致";
                                     }
                                 }
                                 else
@@ -213,7 +208,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                     string name1 = f.get_Value(fchyda.FindField(checkField)).ToString();
                                     if ((string.IsNullOrEmpty(name1) && string.IsNullOrEmpty(name)) || (name1 != name))
                                     {
-                                        errsDic[fe.OID] = roadLyrName + ":" + fe.OID + "与面状水域：" + f.OID + "的字段【" + checkField + "】不一致";
+                                        errsDic[fe.OID] = roadLyrName + ":" + fe.OID + "与" + areaLryName + "：" + f.OID + "的字段【" + checkField + "】不一致";
                                         Marshal.ReleaseComObject(f);
                                         break;
                                     }

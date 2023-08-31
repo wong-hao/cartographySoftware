@@ -168,7 +168,14 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 {
                     IQueryFilter ssQF = new QueryFilterClass();
                     // ssQF.WhereClause = plSSFC.HasCollabField() ? plSSSQL + " and " + cmdUpdateRecord.CurFeatureFilter : plSSSQL;
-                    ssQF.WhereClause = plSSSQL + " and " + cmdUpdateRecord.CurFeatureFilter;
+                    if (String.IsNullOrEmpty(plSSSQL))
+                    {
+                        ssQF.WhereClause = cmdUpdateRecord.CurFeatureFilter;
+                    }
+                    else
+                    {
+                        ssQF.WhereClause = plSSSQL + " and " + cmdUpdateRecord.CurFeatureFilter;
+                    }
 
                     IFeatureCursor feSSCursor = plSSFC.Search(ssQF, false);
                     IFeature feSS = null;
@@ -184,7 +191,14 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                         pFilter.GeometryField = plSSFC.ShapeFieldName;
                         pFilter.SpatialRel = esriSpatialRelEnum.esriSpatialRelWithin;//空间关系
                         // pFilter.WhereClause = plGLFC.HasCollabField() ? plGLSQL + " and " + cmdUpdateRecord.CurFeatureFilter : plGLSQL;
-                        pFilter.WhereClause = plGLSQL + " and " + cmdUpdateRecord.CurFeatureFilter;
+                        if (String.IsNullOrEmpty(plGLSQL))
+                        {
+                            pFilter.WhereClause = cmdUpdateRecord.CurFeatureFilter;
+                        }
+                        else
+                        {
+                            pFilter.WhereClause = plGLSQL + " and " + cmdUpdateRecord.CurFeatureFilter;
+                        }
 
                         IFeature feGL = null;
                         IFeatureCursor feGLCursor = plGLFC.Search(pFilter, false);

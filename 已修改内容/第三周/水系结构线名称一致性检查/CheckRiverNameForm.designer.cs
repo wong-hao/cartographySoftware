@@ -52,7 +52,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 224);
+            this.panel1.Location = new System.Drawing.Point(0, 177);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(355, 31);
@@ -92,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 155);
+            this.label1.Location = new System.Drawing.Point(13, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 39;
@@ -100,7 +100,7 @@
             // 
             // btnFilePath
             // 
-            this.btnFilePath.Location = new System.Drawing.Point(283, 170);
+            this.btnFilePath.Location = new System.Drawing.Point(284, 145);
             this.btnFilePath.Name = "btnFilePath";
             this.btnFilePath.Size = new System.Drawing.Size(61, 23);
             this.btnFilePath.TabIndex = 38;
@@ -110,7 +110,7 @@
             // 
             // tbOutFilePath
             // 
-            this.tbOutFilePath.Location = new System.Drawing.Point(12, 170);
+            this.tbOutFilePath.Location = new System.Drawing.Point(13, 145);
             this.tbOutFilePath.Name = "tbOutFilePath";
             this.tbOutFilePath.ReadOnly = true;
             this.tbOutFilePath.Size = new System.Drawing.Size(265, 21);
@@ -160,7 +160,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 75);
+            this.label4.Location = new System.Drawing.Point(13, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 12);
             this.label4.TabIndex = 44;
@@ -169,7 +169,7 @@
             // roadLyrNameComboBox
             // 
             this.roadLyrNameComboBox.FormattingEnabled = true;
-            this.roadLyrNameComboBox.Location = new System.Drawing.Point(109, 72);
+            this.roadLyrNameComboBox.Location = new System.Drawing.Point(108, 60);
             this.roadLyrNameComboBox.Name = "roadLyrNameComboBox";
             this.roadLyrNameComboBox.Size = new System.Drawing.Size(121, 20);
             this.roadLyrNameComboBox.TabIndex = 43;
@@ -178,7 +178,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 116);
+            this.label5.Location = new System.Drawing.Point(13, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 12);
             this.label5.TabIndex = 45;
@@ -187,7 +187,7 @@
             // checkFieldComboBox
             // 
             this.checkFieldComboBox.FormattingEnabled = true;
-            this.checkFieldComboBox.Location = new System.Drawing.Point(109, 113);
+            this.checkFieldComboBox.Location = new System.Drawing.Point(108, 94);
             this.checkFieldComboBox.Name = "checkFieldComboBox";
             this.checkFieldComboBox.Size = new System.Drawing.Size(121, 20);
             this.checkFieldComboBox.TabIndex = 46;
@@ -197,7 +197,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 255);
+            this.ClientSize = new System.Drawing.Size(355, 208);
             this.Controls.Add(this.checkFieldComboBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);

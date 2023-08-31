@@ -30,6 +30,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         }
 
         public String roadLyrName;
+        public static String areaLryName = "面状水域";
 
         public override void OnClick()
         {
@@ -62,11 +63,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             IGeoFeatureLayer hydaLyr = m_Application.Workspace.LayerManager.GetLayer(new LayerManager.LayerChecker(l =>
             {
-                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == "面状水域");
+                return (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).FeatureClass.AliasName.ToUpper() == areaLryName);
             })).ToArray().First() as IGeoFeatureLayer;
             if (hydaLyr == null)
             {
-                MessageBox.Show("缺少面状水域要素类！");
+                MessageBox.Show("缺少" + areaLryName + "要素类！");
                 return;
             }
             IFeatureClass hydaFC = hydaLyr.FeatureClass;
@@ -174,7 +175,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
             catch (Exception ex)
             {
-                return "合并面状水域失败！";
+                return "合并" + areaLryName + "面失败！";
             }
             #endregion
 
