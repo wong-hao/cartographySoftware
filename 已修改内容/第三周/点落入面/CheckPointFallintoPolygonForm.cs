@@ -15,6 +15,12 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 {
     public partial class CheckPointFallintoPolygonForm : Form
     {
+        public enum CheckType
+        {
+            WITHIN,//点落入面
+            NOTWITHIN//点未落入面
+        }
+
         #region 属性
         public IFeatureClass PointFeatureClass
         {

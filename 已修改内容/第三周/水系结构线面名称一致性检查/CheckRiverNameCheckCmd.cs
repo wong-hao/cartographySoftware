@@ -21,8 +21,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         public CheckRiverNameCheckCmd()
         {
             m_category = "DataCheck";
-            m_caption = "水系结构线名称一致性检查";
-            m_message = "检查水系结构线的名称是否与其对应河流面要素的名称是否一致";
+            m_caption = "水系结构线面名称一致性检查";
+            m_message = "检查水系结构线面的名称是否与其对应河流面要素的名称是否一致";
             m_toolTip = "";
         }
         public override bool Enabled
