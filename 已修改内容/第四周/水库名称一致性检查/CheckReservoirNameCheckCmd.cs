@@ -82,27 +82,26 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             using (var wo = m_Application.SetBusy())
             {
                 err = DoCheck(outputFileName, fc, fchyda, wo);
-            }
 
-            if (err == "")
-            {
-                if (File.Exists(outputFileName))
+                if (err == "")
                 {
-                    IFeatureClass errFC = CheckHelper.OpenSHPFile(outputFileName);
+                    if (File.Exists(outputFileName))
+                    {
+                        IFeatureClass errFC = CheckHelper.OpenSHPFile(outputFileName);
 
-                    if (MessageBox.Show("是否加载检查结果数据到地图？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        CheckHelper.AddTempLayerToMap(m_Application.ActiveView.FocusMap, errFC);
+                        if (MessageBox.Show("是否加载检查结果数据到地图？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            CheckHelper.AddTempLayerToMap(m_Application.ActiveView.FocusMap, errFC);
+                    }
+                    else
+                    {
+                        MessageBox.Show("检查完毕，没有发现不一致性！");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("检查完毕，没有发现不一致性！");
+                    MessageBox.Show(err);
                 }
             }
-            else
-            {
-                MessageBox.Show(err);
-            }
-
         }
 
         public string DoCheck(string resultSHPFileName, IFeatureClass fc, IFeatureClass fchyda, WaitOperation wo = null)
