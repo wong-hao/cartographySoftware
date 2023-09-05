@@ -86,19 +86,19 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             if (DialogResult.OK == frm.ShowDialog())
             {
-                string roadLayerName = frm.RiverLayerName;
+                string riverLayerName = frm.RiverLayerName;
 
                 IFeatureLayer layer = (m_Application.Workspace.LayerManager.GetLayer(
-                    l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == roadLayerName)).FirstOrDefault() as IFeatureLayer);
+                    l => (l is IGeoFeatureLayer) && ((l as IGeoFeatureLayer).Name.ToUpper() == riverLayerName)).FirstOrDefault() as IFeatureLayer);
                 if (null == layer)
                 {
-                    MessageBox.Show(string.Format("没有找到水系图层【{0}】!", roadLayerName), "警告", MessageBoxButtons.OK);
+                    MessageBox.Show(string.Format("没有找到水系图层【{0}】!", riverLayerName), "警告", MessageBoxButtons.OK);
                     return;
                 }
 
                 IFeatureClass riverFC = layer.FeatureClass;
 
-                string outPutFileName = frm.OutFilePath + string.Format("\\道路连通性检查_{0}.shp", roadLayerName);
+                string outPutFileName = frm.OutFilePath + string.Format("\\水系连通性检查_{0}.shp", riverLayerName);
 
                 string err = "";
                 using (var wo = m_Application.SetBusy())
