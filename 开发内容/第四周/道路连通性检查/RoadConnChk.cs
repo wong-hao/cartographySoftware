@@ -50,12 +50,16 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                             //建立结果文件
                             resultFile = new ShapeFileWriter();
                             Dictionary<string, int> fieldName2Len = new Dictionary<string, int>();
-                            fieldName2Len.Add("线要素标识", 20);
+                            fieldName2Len.Add("检查项", 20);
+                            fieldName2Len.Add("图层名", 20);
+                            fieldName2Len.Add("编号", 20);
                             resultFile.createErrorResutSHPFile(resultSHPFileName, (roadFC as IGeoDataset).SpatialReference, esriGeometryType.esriGeometryPolyline, fieldName2Len);
                         }
 
                         Dictionary<string, string> fieldName2FieldValue = new Dictionary<string, string>();
-                        fieldName2FieldValue.Add("线要素标识", string.Format("{0}", fe.OID));
+                        fieldName2FieldValue.Add("检查项", "水系连通性检查");
+                        fieldName2FieldValue.Add("图层名", roadFC.AliasName);
+                        fieldName2FieldValue.Add("编号", string.Format("{0}", fe.OID));
 
                         resultFile.addErrorGeometry(pl, fieldName2FieldValue);
                     }
