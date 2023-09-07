@@ -116,7 +116,6 @@
             this.checkFieldComboBox.Name = "checkFieldComboBox";
             this.checkFieldComboBox.Size = new System.Drawing.Size(121, 20);
             this.checkFieldComboBox.TabIndex = 48;
-            this.checkFieldComboBox.SelectedIndexChanged += new System.EventHandler(this.checkFieldComboBox_SelectedIndexChanged);
             // 
             // label1
             // 

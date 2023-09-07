@@ -113,6 +113,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 }
             }
 
+            tbMinDistance.Enabled = false;
+
             cbObjectLayer.SelectedIndex = 0;
             cbConnLayer.SelectedIndex = 0;
 
@@ -148,6 +150,16 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 return;
             }
 
+
+            if (tbMinDistance.Enabled == true)
+            {
+                if (tbMinDistance.Text == String.Empty)
+                {
+                    MessageBox.Show("请输入间隔!");
+                    return;
+                }
+            }
+
             if (tbOutFilePath.Text == "")
             {
                 MessageBox.Show("请选择检查结果输出路径！");
@@ -155,6 +167,21 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        private void chkShp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShp.Checked)
+            {
+                tbMinDistance.Enabled = true;
+            }
+            else
+            {
+                tbMinDistance.Enabled = false;
+
+                tbMinDistance.Text = String.Empty;
+
+            }
         }
     }
 }

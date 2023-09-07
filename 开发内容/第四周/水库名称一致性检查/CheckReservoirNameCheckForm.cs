@@ -16,24 +16,14 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
     public partial class CheckReservoirNameCheckForm : Form
     {
         #region 属性
-        public IFeatureClass PointFeatureClass
-        {
-            get
-            {
-                return _pointFeatureClass;
-            }
-        }
-        private IFeatureClass _pointFeatureClass;
 
-        public IFeatureClass AreaFeatureClass
+        public String checkField
         {
             get
             {
-                return _areaFeatureClass;
+                return checkFieldComboBox.SelectedItem.ToString();
             }
         }
-        private IFeatureClass _areaFeatureClass;
-        public String checkField;
 
         public string ResultOutputFilePath
         {
@@ -57,7 +47,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             checkFieldComboBox.Items.Add("LABELNAME");
             checkFieldComboBox.Items.Add("TYPE");
             checkFieldComboBox.Items.Add("DJ");
-            checkField = String.Empty;
 
             // 选择默认项（可选）
             checkFieldComboBox.SelectedIndex = 0; // 默认选中第一个选项，如果需要选择第二个选项，将索引设置为 1
@@ -84,11 +73,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
-        }
-
-        private void checkFieldComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            checkField = checkFieldComboBox.SelectedItem.ToString();
         }
     }
 }

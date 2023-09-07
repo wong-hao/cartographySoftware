@@ -44,6 +44,7 @@
             this.tbMinDistance = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkShp = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,7 +176,7 @@
             // 
             // tbMinDistance
             // 
-            this.tbMinDistance.Location = new System.Drawing.Point(72, 182);
+            this.tbMinDistance.Location = new System.Drawing.Point(14, 188);
             this.tbMinDistance.Name = "tbMinDistance";
             this.tbMinDistance.Size = new System.Drawing.Size(136, 21);
             this.tbMinDistance.TabIndex = 52;
@@ -183,7 +184,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(214, 185);
+            this.label6.Location = new System.Drawing.Point(156, 191);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(11, 12);
             this.label6.TabIndex = 51;
@@ -192,17 +193,28 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 185);
+            this.label4.Location = new System.Drawing.Point(35, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.Size = new System.Drawing.Size(101, 12);
             this.label4.TabIndex = 50;
-            this.label4.Text = "最小间隔:";
+            this.label4.Text = "最小间隔【可选】";
+            // 
+            // chkShp
+            // 
+            this.chkShp.AutoSize = true;
+            this.chkShp.Location = new System.Drawing.Point(14, 173);
+            this.chkShp.Name = "chkShp";
+            this.chkShp.Size = new System.Drawing.Size(15, 14);
+            this.chkShp.TabIndex = 53;
+            this.chkShp.UseVisualStyleBackColor = true;
+            this.chkShp.CheckedChanged += new System.EventHandler(this.chkShp_CheckedChanged);
             // 
             // CheckRoadAndRiverSymbolConflictForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(411, 307);
+            this.Controls.Add(this.chkShp);
             this.Controls.Add(this.tbMinDistance);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -245,5 +257,6 @@
         private System.Windows.Forms.TextBox tbMinDistance;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkShp;
     }
 }
