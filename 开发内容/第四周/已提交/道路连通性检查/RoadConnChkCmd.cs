@@ -12,7 +12,7 @@ using System.IO;
 namespace SMGI.Plugin.CollaborativeWorkWithAccount
 {
     /// <summary>
-    /// 检查某一等级道路的连通性：
+    /// 检查某一道路的连通性：
     /// 若符合条件的道路起点或终点，某一端与其它道路的端点相连，，则视为该段道路不连通，将该段道路加入质检结果
     /// </summary>
     public class RoadConnChkCmd : SMGI.Common.SMGICommand

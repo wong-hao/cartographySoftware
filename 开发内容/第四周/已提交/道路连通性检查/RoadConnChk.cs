@@ -57,7 +57,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                         }
 
                         Dictionary<string, string> fieldName2FieldValue = new Dictionary<string, string>();
-                        fieldName2FieldValue.Add("检查项", "水系连通性检查");
+                        fieldName2FieldValue.Add("检查项", "道路连通性检查");
                         fieldName2FieldValue.Add("图层名", roadFC.AliasName);
                         fieldName2FieldValue.Add("编号", string.Format("{0}", fe.OID));
 

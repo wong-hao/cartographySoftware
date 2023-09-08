@@ -84,7 +84,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         }
 
         /// <summary>
-        /// 检测水系几何分级等级是否连通
+        /// 检测水系几何是否连通
         /// </summary>
         /// <param name="roadFC"></param>
         /// <param name="roadFe"></param>
