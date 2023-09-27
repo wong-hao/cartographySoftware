@@ -1,0 +1,22 @@
+<Mapping>
+  <Readmes>此文件为协同作业（修改）时，以下工具用于存储水系设施、线与面的配置文档：
+    <工具>水系线面套合处理工具</工具>
+    <工具>设施套路水工具</工具>
+    <工具>设施套面工具</工具>
+    <工具>水系连通性检查</工具>
+    <工具>道路与水系符号冲突检查工具</工具>
+  </Readmes>
+  <Facilities>
+    <Facility>堤田埂</Facility>
+    <Facility>港湾</Facility>
+  </Facilities>
+  <Roads>
+    <Road>海岸线</Road>
+    <Road>水渠</Road>
+    <Road>河流</Road>
+  </Roads>
+  <Areas>
+    <Area>海域</Area>
+    <Area>面状水域</Area>
+  </Areas>
+</Mapping>
