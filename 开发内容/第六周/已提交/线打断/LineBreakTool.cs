@@ -108,7 +108,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 if (bCoola)
                 {
                     string STACOD = _breakFeature.get_Value(_breakFeature.Fields.FindField(ServerDataInitializeCommand.CollabSTACOD)).ToString();
-                    MessageBox.Show("STACOD: " + STACOD.ToString());
                     if (STACOD == "删除")
                     {
                         MessageBox.Show("该要素为删除要素，不支持该操作！");

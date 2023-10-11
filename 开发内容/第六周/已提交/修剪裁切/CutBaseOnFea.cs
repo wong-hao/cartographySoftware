@@ -188,12 +188,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                     feadlet.Add(feature);
                                     fea[i].Shape = feature.Shape;
                                     fea[i].Store();
-                                    int idxSTACOD = -1;
-                                    int idxVERS = -1;
-                                    idxSTACOD = fea[i].Fields.FindField(ServerDataInitializeCommand.CollabSTACOD);
-                                    fea[i].set_Value(idxSTACOD, "修改");
-                                    idxVERS = fea[i].Fields.FindField(ServerDataInitializeCommand.CollabVERSION);
-                                    fea[i].set_Value(idxVERS, cmdUpdateRecord.EditState);
                                 }
                             }
                         }
