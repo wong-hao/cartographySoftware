@@ -120,7 +120,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     string fcName = item.Value.AliasName;
 
                     if (wo != null)
-                        wo.SetText(string.Format("正在检查要素类【{0}】的空间参考信息......", fcName));
+                        wo.SetText(string.Format("正在检查要素类【{0}】的字段结构信息......", fcName));
 
                     /*
                     // 1.空间参考检查
@@ -147,7 +147,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     info += CompareFieldsStruct(item.Key, item.Value);
                     if (info != "")
                         logInfo.Add(fcName, string.Format("{0}\r\n", info));
-                    MessageBox.Show(fcName);
                 }
 
                 // 输出结果信息
