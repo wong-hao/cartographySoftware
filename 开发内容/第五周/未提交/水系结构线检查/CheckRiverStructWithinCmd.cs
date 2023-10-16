@@ -137,7 +137,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     sf.SpatialRel = esriSpatialRelEnum.esriSpatialRelWithin;
                     if (hydaFC.FindField(ServerDataInitializeCommand.CollabVERSION) != -1)
                         sf.WhereClause = "TYPE = '双线河流'or TYPE = '水库'or TYPE = '湖泊池塘'";
-                    sf.WhereClause = string.Format("({0} <> {1} or {2} is null)", ServerDataInitializeCommand.CollabVERSION, cmdUpdateRecord.DeleteState, ServerDataInitializeCommand.CollabVERSION);
+                    sf.WhereClause += string.Format(" and ({0} <> {1} or {2} is null)", ServerDataInitializeCommand.CollabVERSION, cmdUpdateRecord.DeleteState, ServerDataInitializeCommand.CollabVERSION);
                     if (hydaFC.FeatureCount(sf) == 0)//该水系结构线不包含在任一水系面内
                     {
                         oid2ErrInfo.Add(f.OID, "水系结构线不包含在任一水系面内");
