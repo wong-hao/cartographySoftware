@@ -68,6 +68,9 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             string outPutFileName = OutputSetup.GetDir() + string.Format("\\水系结构线检查包含.shp");
 
+            Geoprocessor geoprocessor = new Geoprocessor();
+            geoprocessor.OverwriteOutput = true;
+
             // 创建空间过滤器
             ISpatialFilter spatialFilter = new SpatialFilterClass();
             spatialFilter.GeometryField = "Shape"; // Shape字段是几何字段的名称
@@ -116,8 +119,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     multipartToSinglepart.in_features = featureSelection;
                     multipartToSinglepart.out_feature_class = "hydl_MultipartToSinglepart2";
 
-                    Geoprocessor geoprocessor = new Geoprocessor();
-                    geoprocessor.OverwriteOutput = true;
                     Helper.ExecuteGPTool(geoprocessor, multipartToSinglepart, null);
 
                     Console.WriteLine("Multipart To Singlepart成功！");
@@ -141,8 +142,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 sort.spatial_sort_method = "UR";
                 sort.out_dataset = "hydl_MultipartToSinglepart2_Sor";
 
-                Geoprocessor geoprocessor = new Geoprocessor();
-                geoprocessor.OverwriteOutput = true;
                 Helper.ExecuteGPTool(geoprocessor, sort, null);
 
 
@@ -162,9 +161,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.field_type = "TEXT";
                 // addField.field_is_nullable = "false";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, addField, null);
+                Helper.ExecuteGPTool(geoprocessor, addField, null);
 
                 Console.WriteLine("Add field 成功！");
             }
@@ -182,9 +179,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 calculateField.expression = "\"hl\" & [OBJECTID]";
                 calculateField.expression_type = "VB";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, calculateField, null);
+                Helper.ExecuteGPTool(geoprocessor, calculateField, null);
 
                 Console.WriteLine("Calculate field 成功！");
             }
@@ -201,8 +196,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 sort.sort_field = "Shape ASCENDING";
                 sort.out_dataset = "hyda_Sort3";
 
-                Geoprocessor geoprocessor = new Geoprocessor();
-                geoprocessor.OverwriteOutput = true;
                 Helper.ExecuteGPTool(geoprocessor, sort, null);
 
                 Console.WriteLine("要素排序成功！");
@@ -220,9 +213,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.field_type = "TEXT";
                 // addField.field_is_nullable = "false";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, addField, null);
+                Helper.ExecuteGPTool(geoprocessor, addField, null);
 
                 Console.WriteLine("Add field 成功！");
             }
@@ -240,9 +231,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 calculateField.expression = "[OBJECTID]";
                 calculateField.expression_type = "VB";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, calculateField, null);
+                Helper.ExecuteGPTool(geoprocessor, calculateField, null);
 
                 Console.WriteLine("Calculate field 成功！");
             }
@@ -258,9 +247,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 featureToLine.in_features = "hyda_Sort3";
                 featureToLine.out_feature_class = "hyda_Sort_FeatureToLine";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, featureToLine, null);
+                Helper.ExecuteGPTool(geoprocessor, featureToLine, null);
 
                 Console.WriteLine("Feature To Line 成功！");
             }
@@ -278,9 +265,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 intersect.output_type = "POINT";
                 intersect.out_feature_class = "hyda_Sort_FeatureToLine_Int";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, intersect, null);
+                Helper.ExecuteGPTool(geoprocessor, intersect, null);
 
                 Console.WriteLine("Intersect 成功！");
             }
@@ -296,8 +281,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 multipartToSinglepart.in_features = "hyda_Sort_FeatureToLine_Int";
                 multipartToSinglepart.out_feature_class = "hyda_Sort_FeatureToLine_Int1";
 
-                Geoprocessor geoprocessor = new Geoprocessor();
-                geoprocessor.OverwriteOutput = true;
                 Helper.ExecuteGPTool(geoprocessor, multipartToSinglepart, null);
 
                 Console.WriteLine("Multipart To Singlepart processing completed successfully.");
@@ -314,8 +297,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 multipartToSinglepart.in_features = "hyda_Sort_FeatureToLine_Int";
                 multipartToSinglepart.out_feature_class = "hyda_Sort_FeatureToLine_Int1";
 
-                Geoprocessor geoprocessor = new Geoprocessor();
-                geoprocessor.OverwriteOutput = true;
                 Helper.ExecuteGPTool(geoprocessor, multipartToSinglepart, null);
 
                 Console.WriteLine("Multipart To Singlepart processing completed successfully.");
@@ -334,8 +315,6 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 statistics.statistics_fields = "mianBSM COUNT";
                 statistics.case_field = "BSM;mianBSM";
 
-                Geoprocessor geoprocessor = new Geoprocessor();
-                geoprocessor.OverwriteOutput = true;
                 Helper.ExecuteGPTool(geoprocessor, statistics, null);
 
                 Console.WriteLine("Statistics completed successfully.");
@@ -354,9 +333,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.field_type = "TEXT";
                 // addField.field_is_nullable = "false";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, addField, null);
+                Helper.ExecuteGPTool(geoprocessor, addField, null);
 
                 Console.WriteLine("Add field 成功！");
             }
@@ -374,9 +351,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 calculateField.expression = "[BSM] & [mianBSM]";
                 calculateField.expression_type = "VB";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, calculateField, null);
+                Helper.ExecuteGPTool(geoprocessor, calculateField, null);
 
                 Console.WriteLine("Calculate field 成功！");
             }
@@ -394,9 +369,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.field_type = "TEXT";
                 // addField.field_is_nullable = "false";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, addField, null);
+                Helper.ExecuteGPTool(geoprocessor, addField, null);
 
                 Console.WriteLine("Add field 成功！");
             }
@@ -414,9 +387,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 calculateField.expression = "[BSM] & [mianBSM]";
                 calculateField.expression_type = "VB";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, calculateField, null);
+                Helper.ExecuteGPTool(geoprocessor, calculateField, null);
 
                 Console.WriteLine("Calculate field 成功！");
             }
@@ -436,9 +407,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 joinField.fields = "FREQUENCY";
                 joinField.out_layer_or_view = "hyda_Sort_FeatureToLine_Int1";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, joinField, null);
+                Helper.ExecuteGPTool(geoprocessor, joinField, null);
 
                 Console.WriteLine("Join field 成功！");
 
@@ -457,9 +426,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 select.out_feature_class = "found_Points";
                 select.where_clause = "\"FREQUENCY\" > 2";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, select, null);
+                Helper.ExecuteGPTool(geoprocessor, select, null);
 
                 Console.WriteLine("Select 成功！");
             }
@@ -477,9 +444,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 dissolve.dissolve_field = "mianBSM;BSM;FREQUENCY";
                 dissolve.multi_part = "MULTI_PART";
 
-                Geoprocessor geoprocessor2 = new Geoprocessor();
-                geoprocessor2.OverwriteOutput = true;
-                Helper.ExecuteGPTool(geoprocessor2, dissolve, null);
+                Helper.ExecuteGPTool(geoprocessor, dissolve, null);
 
                 Console.WriteLine("Dissolve 成功！");
             }
