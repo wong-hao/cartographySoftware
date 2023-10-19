@@ -86,7 +86,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             spatialFilter.SpatialRel = esriSpatialRelEnum.esriSpatialRelIntersects;
 
             // 设置hydlLyr的查询条件
-            spatialFilter.WhereClause = "GB = 210000 OR GB = 220000";
+            spatialFilter.WhereClause = "GB in (210000, 220000)";
 
             // 获取满足条件的hydlLyr要素
             IFeatureCursor hydlCursor = hydlLyr.Search(spatialFilter, true);
@@ -103,7 +103,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 spatialFilter.Geometry = hydlFeature.Shape;
 
                 // 设置hydaLyr的属性查询条件
-                spatialFilter.WhereClause = "TYPE = '双线河流' OR TYPE = '水库' OR TYPE = '湖泊池塘'";
+                spatialFilter.WhereClause = "TYPE in ('双线河流', '水库', '湖泊池塘')";
 
                 // 在hydaLyr中进行空间和属性查询
                 IFeatureCursor hydaCursor = hydaLyr.Search(spatialFilter, true);
@@ -113,11 +113,15 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     // 如果有满足条件的hydaLyr要素，将其添加到选择集中
                     featureSelection.Add(hydlFeature);
                 }
+                // 释放水系结构面要素游标
+                Marshal.ReleaseComObject(hydaCursor);
 
                 // 继续处理下一个hydlLyr要素
                 hydlFeature = hydlCursor.NextFeature();
             }
 
+            // 释放水系结构线要素游标
+            Marshal.ReleaseComObject(hydlCursor);
 
             // Check if there are selected features
             if (featureSelection.SelectionSet.Count > 0)
@@ -168,7 +172,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.in_table = "hydl_MultipartToSinglepart2_Sor";
                 addField.field_name = "BSM";
                 addField.field_type = "TEXT";
-                // addField.field_is_nullable = "false";
+                addField.field_is_nullable = "NULLABLE";
+                addField.field_is_required = "NON_REQUIRED";
 
                 Helper.ExecuteGPTool(geoprocessor, addField, null);
 
@@ -220,7 +225,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.in_table = "hyda_Sort3";
                 addField.field_name = "mianBSM";
                 addField.field_type = "TEXT";
-                // addField.field_is_nullable = "false";
+                addField.field_is_nullable = "NULLABLE";
+                addField.field_is_required = "NON_REQUIRED";
 
                 Helper.ExecuteGPTool(geoprocessor, addField, null);
 
@@ -254,6 +260,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             {
                 FeatureToLine featureToLine = new FeatureToLine();
                 featureToLine.in_features = "hyda_Sort3";
+                featureToLine.attributes = "ATTRIBUTES";
                 featureToLine.out_feature_class = "hyda_Sort_FeatureToLine";
 
                 Helper.ExecuteGPTool(geoprocessor, featureToLine, null);
@@ -340,7 +347,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.in_table = "hyda_Sort_FeatureToLine_Int2";
                 addField.field_name = "JN";
                 addField.field_type = "TEXT";
-                // addField.field_is_nullable = "false";
+                addField.field_is_nullable = "NULLABLE";
+                addField.field_is_required = "NON_REQUIRED";
 
                 Helper.ExecuteGPTool(geoprocessor, addField, null);
 
@@ -376,7 +384,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 addField.in_table = "hyda_Sort_FeatureToLine_Int1";
                 addField.field_name = "JoinName";
                 addField.field_type = "TEXT";
-                // addField.field_is_nullable = "false";
+                addField.field_is_nullable = "NULLABLE";
+                addField.field_is_required = "NON_REQUIRED";
 
                 Helper.ExecuteGPTool(geoprocessor, addField, null);
 

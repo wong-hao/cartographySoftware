@@ -120,63 +120,69 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             {
                 Dictionary<int, string> oid2ErrInfo = new Dictionary<int, string>();
 
-                // 遍历水系结构线要素
-                IFeatureCursor cursor = hydlFC.Search(null, false);
-                IFeature hydlFeature = cursor.NextFeature();
+                // 创建空间过滤器
+                ISpatialFilter spatialFilter = new SpatialFilterClass();
+                spatialFilter.GeometryField = "Shape"; // Shape字段是几何字段的名称
+                spatialFilter.SpatialRel = esriSpatialRelEnum.esriSpatialRelIntersects;
 
+                // 设置hydlLyr的查询条件
+                spatialFilter.WhereClause = "GB in (210000, 220000)";
+
+                // 获取满足条件的hydlLyr要素
+                IFeatureCursor hydlCursor = hydlFC.Search(spatialFilter, true);
+
+                // 遍历满足条件的hydlLyr要素
+                IFeature hydlFeature = hydlCursor.NextFeature();
                 while (hydlFeature != null)
                 {
-                    // 判断是否符合条件（GB为2100000或220000）
-                    if (hydlFeature.get_Value(hydlFC.Fields.FindField("GB")).ToString() == "210000" ||
-                        hydlFeature.get_Value(hydlFC.Fields.FindField("GB")).ToString() == "220000")
+                    // 获取水系结构线要素的几何对象
+                    IGeometry hydlGeometry = hydlFeature.Shape;
+
+                    // 设置hydaLyr的空间查询几何体为当前hydlLyr要素的几何体
+                    spatialFilter.Geometry = hydlGeometry;
+
+                    // 设置hydaLyr的属性查询条件
+                    spatialFilter.WhereClause = "TYPE in ('双线河流', '水库', '湖泊池塘')";
+
+                    // 在hydaLyr中进行空间和属性查询
+                    IFeatureCursor hydaCursor = hydaFC.Search(spatialFilter, true);
+                    IFeature hydaFeature = hydaCursor.NextFeature();
+
+                    while (hydaFeature != null)
                     {
-                        // 获取水系结构线要素的几何对象
-                        IGeometry hydlGeometry = hydlFeature.Shape;
+                        // 获取水系结构面要素的几何对象
+                        IGeometry hydaGeometry = hydaFeature.Shape;
 
-                        // 遍历水系结构面要素
-                        IFeatureCursor hydaCursor = hydaFC.Search(null, false);
-                        IFeature hydaFeature = hydaCursor.NextFeature();
+                        // 使用ITopologicalOperator接口进行几何运算
+                        ITopologicalOperator topoOperator = (ITopologicalOperator)hydlGeometry;
+                        IGeometry intersectedGeometry = topoOperator.Intersect(hydaGeometry, esriGeometryDimension.esriGeometry0Dimension);
 
-                        while (hydaFeature != null)
+                        // 判断是否有交点
+                        if (!intersectedGeometry.IsEmpty)
                         {
-                            // 判断是否符合条件（TYPE为双线河流或水库或湖泊池塘）
-                            if (hydaFeature.get_Value(hydaFC.Fields.FindField("TYPE")).ToString() == "双线河流" ||
-                                hydaFeature.get_Value(hydaFC.Fields.FindField("TYPE")).ToString() == "水库" ||
-                                hydaFeature.get_Value(hydaFC.Fields.FindField("TYPE")).ToString() == "湖泊池塘")
+                            // 计算交点数
+                            IPointCollection intersectionPoints = intersectedGeometry as IPointCollection;
+                            int intersectionCount = intersectionPoints.PointCount;
+
+                            Console.WriteLine(hydlFeature.OID + "与" + hydaFeature.OID + "交点个数为: " + intersectionCount);
+                            // 如果交点数量大于2，记录下当前水系结构线要素的OID
+                            if (intersectionCount > 2)
                             {
-                                // 获取水系结构面要素的几何对象
-                                IGeometry hydaGeometry = hydaFeature.Shape;
-
-                                // 使用ITopologicalOperator接口进行几何运算
-                                ITopologicalOperator topoOperator = (ITopologicalOperator)hydlGeometry;
-                                IGeometry intersectedGeometry = topoOperator.Intersect(hydaGeometry, esriGeometryDimension.esriGeometry0Dimension);
-
-                                // 判断是否有交点
-                                if (!intersectedGeometry.IsEmpty)
-                                {
-                                    // 计算交点数
-                                    IPointCollection intersectionPoints = intersectedGeometry as IPointCollection;
-                                    int intersectionCount = intersectionPoints.PointCount;
-
-                                    Console.WriteLine(hydlFeature.OID + "与" + hydaFeature.OID + "交点个数为: " + intersectionCount);
-                                    // 如果交点数量大于2，记录下当前水系结构线要素的OID
-                                    if (intersectionCount > 2)
-                                    {
-                                        oid2ErrInfo.Add(hydlFeature.OID, "不合理的水系结构线");
-                                        // 处理记录下来的OID，例如输出到日志中
-                                    }
-                                }
+                                oid2ErrInfo.Add(hydlFeature.OID, "不合理的水系结构线");
+                                // 处理记录下来的OID，例如输出到日志中
                             }
-
-                            hydaFeature = hydaCursor.NextFeature();
                         }
 
-                        // 释放水系结构线要素游标
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(hydaCursor);
+                        hydaFeature = hydaCursor.NextFeature();
                     }
+                    // 释放水系结构面要素游标
+                    Marshal.ReleaseComObject(hydaCursor);
 
-                    hydlFeature = cursor.NextFeature();
+                    hydlFeature = hydlCursor.NextFeature();
                 }
+
+                // 释放水系结构线要素游标
+                Marshal.ReleaseComObject(hydlCursor);
 
                 if (wo != null)
                     wo.SetText("正在输出检查结果......");
