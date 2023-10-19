@@ -159,8 +159,8 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                     int intersectionCount = intersectionPoints.PointCount;
 
                                     Console.WriteLine(hydlFeature.OID + "与" + hydaFeature.OID + "交点个数为: " + intersectionCount);
-                                    // 如果交点数量大于等于4，记录下当前水系结构线要素的OID
-                                    if (intersectionCount >= 4)
+                                    // 如果交点数量大于2，记录下当前水系结构线要素的OID
+                                    if (intersectionCount > 2)
                                     {
                                         oid2ErrInfo.Add(hydlFeature.OID, "不合理的水系结构线");
                                         // 处理记录下来的OID，例如输出到日志中

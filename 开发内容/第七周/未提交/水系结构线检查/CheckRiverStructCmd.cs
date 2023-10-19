@@ -68,6 +68,15 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             string outPutFileName = OutputSetup.GetDir() + string.Format("\\水系结构线检查包含.shp");
 
+            using (var wo = m_Application.SetBusy())
+            {
+                DoCheck(outPutFileName, hydlLyr, hydaLyr, wo);
+            }
+        }
+
+        public void DoCheck(string outPutFileName, IFeatureLayer hydlLyr, IFeatureLayer hydaLyr,
+            WaitOperation wo = null)
+        {
             Geoprocessor geoprocessor = new Geoprocessor();
             geoprocessor.OverwriteOutput = true;
 
