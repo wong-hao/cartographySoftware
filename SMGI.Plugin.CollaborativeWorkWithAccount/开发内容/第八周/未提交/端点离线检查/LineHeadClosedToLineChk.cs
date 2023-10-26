@@ -232,12 +232,23 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     {
                         int groupMinID = ptID_groupID[id1] < ptID_groupID[id2] ? ptID_groupID[id1] : ptID_groupID[id2];
                         int groupMaxID = ptID_groupID[id1] > ptID_groupID[id2] ? ptID_groupID[id1] : ptID_groupID[id2];
+
+                        // 创建一个临时字典来保存需要修改的键值对
+                        Dictionary<int, int> tempDict = new Dictionary<int, int>();
+
                         foreach (int ptID in ptID_groupID.Keys)
                         {
                             if (ptID_groupID[ptID] == groupMaxID)
                             {
-                                ptID_groupID[ptID] = groupMinID;
+                                // 将需要修改的键值对添加到临时字典中
+                                tempDict[ptID] = groupMinID;
                             }
+                        }
+
+                        // 使用临时字典来修改原始字典
+                        foreach (var kvp in tempDict)
+                        {
+                            ptID_groupID[kvp.Key] = kvp.Value;
                         }
                     }
                 }             
