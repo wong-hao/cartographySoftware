@@ -1,4 +1,4 @@
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Display;
@@ -24,7 +24,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         public override void OnClick()
         {
             //图层选择、最大距离对话框
-            var layerSelectForm = new LineHeadClosedToLineChkLayerSelectForm(m_Application)
+            var layerSelectForm = new LayerSelectForm(m_Application)
             {
                 GeoTypeFilter = esriGeometryType.esriGeometryPolyline
             };
