@@ -154,7 +154,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
 
             fc = fws.OpenFeatureClass(targetLayerGroupName);
 
-            LineHeadClosedToLineChk check2 = new LineHeadClosedToLineChk();
+            LineHeadClosedToLineCrossLayersChk check2 = new LineHeadClosedToLineCrossLayersChk();
 
             ResultMessage resultMessage;
             using (var wo = m_Application.SetBusy())
