@@ -38,7 +38,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
         private void CheckFCFieldValueFrm_Load(object sender, EventArgs e)
         {
             // 在构造函数或 Load 事件中添加选项
-            mdbPath = _app.Template.Root + "\\质检\\要素分层硬编码逻辑检查.mdb";
+            mdbPath = _app.Template.Root + "\\质检\\属性逻辑关系硬编码检查.mdb";
             List<string> tableNames = GetTableNamesFromMDB(mdbPath);
 
             // 使用 foreach 循环遍历列表中的元素

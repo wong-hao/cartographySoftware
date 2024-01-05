@@ -18,7 +18,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
     /// <summary>
     /// 要素分层检查
     /// </summary>
-    public class CheckFCFieldValueHardCodedRelationshipCmd : SMGICommand
+    public class CheckFCFieldValueRelationshipHardCodedCmd : SMGICommand
     {
         public override bool Enabled
         {
@@ -70,7 +70,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 MessageBox.Show("请指定输出路径！");
                 return;
             }
-            string outputFileName = tdir + string.Format("\\{0}_要素分层硬编码逻辑检查.shp", tableName);
+            string outputFileName = tdir + string.Format("\\{0}_属性逻辑关系硬编码检查.shp", tableName);
 
             string err = "";
             using (var wo = m_Application.SetBusy())
@@ -437,7 +437,7 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                 }
                             }
                             fieldName2FieldValue.Add("不合法字段", oidErrString);
-                            fieldName2FieldValue.Add("检查项", "要素分层硬编码逻辑检查");
+                            fieldName2FieldValue.Add("检查项", "属性逻辑关系硬编码检查");
                             IPoint geo = null;
                             try
                             {
