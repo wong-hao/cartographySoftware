@@ -29,6 +29,11 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
             }
         }
 
+       private static string DJ = "DJ";
+       private static string GB = "GB";
+       private static string CODE = "CODE";
+       private static string TYPE = "TYPE";
+
         static Dictionary<int, List<string>> oid2FieldList = new Dictionary<int, List<string>>();
 
         public override void OnClick()
@@ -106,16 +111,16 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                 {
                     int checkItemsIndex = dataTable.Rows.IndexOf(dr);
 
-                    string TYPE = dr["TYPE"].ToString();
-                    string GB = dr["GB"].ToString();
-                    string CODE = dr["CODE"].ToString();
-                    string DJ = dr["DJ"].ToString();
+                    string targetTYPE = dr[TYPE].ToString();
+                    string targetGB = dr[GB].ToString();
+                    string targetCODE = dr[CODE].ToString();
+                    string targetDJ = dr[DJ].ToString();
 
                     List<string> domain = new List<string>();
-                    domain.Add(TYPE);
-                    domain.Add(GB);
-                    domain.Add(CODE);
-                    domain.Add(DJ);
+                    domain.Add(targetTYPE);
+                    domain.Add(targetGB);
+                    domain.Add(targetCODE);
+                    domain.Add(targetDJ);
 
                     var lyr = m_Application.Workspace.LayerManager.GetLayer(new LayerManager.LayerChecker(l =>
                     {
@@ -135,25 +140,25 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     }
 
                     // 避免字段不存在
-                    int fieldTYPEIndex = fc.Fields.FindField(TYPE);
+                    int fieldTYPEIndex = fc.Fields.FindField(targetTYPE);
                     if (fieldTYPEIndex == -1)
                     {
                         // 如果字段不存在于要素类中，记录错误信息
                     }
 
-                    int fieldGBIndex = fc.Fields.FindField(GB);
+                    int fieldGBIndex = fc.Fields.FindField(targetGB);
                     if (fieldGBIndex == -1)
                     {
                         // 如果字段不存在于要素类中，记录错误信息
                     }
 
-                    int fieldCODEIndex = fc.Fields.FindField(CODE);
+                    int fieldCODEIndex = fc.Fields.FindField(targetCODE);
                     if (fieldCODEIndex == -1)
                     {
                         // 如果字段不存在于要素类中，记录错误信息
                     }
 
-                    int fieldDJIndex = fc.Fields.FindField(DJ);
+                    int fieldDJIndex = fc.Fields.FindField(targetDJ);
                     if (fieldDJIndex == -1)
                     {
                         // 如果字段不存在于要素类中，记录错误信息
@@ -241,20 +246,20 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                     {
                         if (targetDJs.Count != 0)
                         {
-                            realDJ = GetFieldByName(feloop, "DJ");
+                            realDJ = GetFieldByName(feloop, DJ);
                             int rowIndex = targetDJs.IndexOf(realDJ);
                             if (rowIndex == -1)
                             {
                                 if (!oid2FieldList.ContainsKey(feloop.OID))
                                 {
-                                    oid2FieldList.Add(feloop.OID, new List<string>() { "DJ" });
+                                    oid2FieldList.Add(feloop.OID, new List<string>() { DJ });
                                 }
                                 else
                                 {
                                     // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                    if (!oid2FieldList[feloop.OID].Contains("DJ"))
+                                    if (!oid2FieldList[feloop.OID].Contains(DJ))
                                     {
-                                        oid2FieldList[feloop.OID].Add("DJ");
+                                        oid2FieldList[feloop.OID].Add(DJ);
                                     }
                                 }
 
@@ -264,60 +269,60 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                 if (checkItemsIndex == rowIndex)
                                 {
                                     string targetCODE = domain[domain.Count - 2];
-                                    string realCODE = GetFieldByName(feloop, "CODE");
+                                    string realCODE = GetFieldByName(feloop, CODE);
 
                                     if (!targetCODE.Equals(realCODE))
                                     {
                                         if (!oid2FieldList.ContainsKey(feloop.OID))
                                         {
-                                            oid2FieldList.Add(feloop.OID, new List<string>() { "CODE" });
+                                            oid2FieldList.Add(feloop.OID, new List<string>() { CODE });
                                         }
                                         else
                                         {
                                             // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                            if (!oid2FieldList[feloop.OID].Contains("CODE"))
+                                            if (!oid2FieldList[feloop.OID].Contains(CODE))
                                             {
-                                                oid2FieldList[feloop.OID].Add("CODE");
+                                                oid2FieldList[feloop.OID].Add(CODE);
                                             }
                                         }
                                     }
                                     else
                                     {
                                         string targetGB = domain[domain.Count - 3];
-                                        string realGB = GetFieldByName(feloop, "GB");
+                                        string realGB = GetFieldByName(feloop, GB);
 
                                         if (!targetGB.Equals(realGB))
                                         {
                                             if (!oid2FieldList.ContainsKey(feloop.OID))
                                             {
-                                                oid2FieldList.Add(feloop.OID, new List<string>() { "GB" });
+                                                oid2FieldList.Add(feloop.OID, new List<string>() { GB });
                                             }
                                             else
                                             {
                                                 // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                                if (!oid2FieldList[feloop.OID].Contains("GB"))
+                                                if (!oid2FieldList[feloop.OID].Contains(GB))
                                                 {
-                                                    oid2FieldList[feloop.OID].Add("GB");
+                                                    oid2FieldList[feloop.OID].Add(GB);
                                                 }
                                             }
                                         }
                                         else
                                         {
                                             string targetTYPE = domain[domain.Count - 4];
-                                            string realTYPE = GetFieldByName(feloop, "TYPE");
+                                            string realTYPE = GetFieldByName(feloop, TYPE);
 
                                             if (!targetTYPE.Equals(realTYPE))
                                             {
                                                 if (!oid2FieldList.ContainsKey(feloop.OID))
                                                 {
-                                                    oid2FieldList.Add(feloop.OID, new List<string>() { "TYPE" });
+                                                    oid2FieldList.Add(feloop.OID, new List<string>() { TYPE });
                                                 }
                                                 else
                                                 {
                                                     // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                                    if (!oid2FieldList[feloop.OID].Contains("TYPE"))
+                                                    if (!oid2FieldList[feloop.OID].Contains(TYPE))
                                                     {
-                                                        oid2FieldList[feloop.OID].Add("TYPE");
+                                                        oid2FieldList[feloop.OID].Add(TYPE);
                                                     }
                                                 }
                                             }
@@ -328,21 +333,21 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                         }
                         else
                         {
-                            string realCODE = GetFieldByName(feloop, "CODE");
+                            string realCODE = GetFieldByName(feloop, CODE);
 
                             int rowIndex = targetCODEs.IndexOf(realCODE);
                             if (rowIndex == -1)
                             {
                                 if (!oid2FieldList.ContainsKey(feloop.OID))
                                 {
-                                    oid2FieldList.Add(feloop.OID, new List<string>() { "CODE" });
+                                    oid2FieldList.Add(feloop.OID, new List<string>() { CODE });
                                 }
                                 else
                                 {
                                     // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                    if (!oid2FieldList[feloop.OID].Contains("CODE"))
+                                    if (!oid2FieldList[feloop.OID].Contains(CODE))
                                     {
-                                        oid2FieldList[feloop.OID].Add("CODE");
+                                        oid2FieldList[feloop.OID].Add(CODE);
                                     }
                                 }
 
@@ -352,40 +357,40 @@ namespace SMGI.Plugin.CollaborativeWorkWithAccount
                                 if (checkItemsIndex == rowIndex)
                                 {
                                     string targetGB = domain[domain.Count - 3];
-                                    string realGB = GetFieldByName(feloop, "GB");
+                                    string realGB = GetFieldByName(feloop, GB);
 
                                     if (!targetGB.Equals(realGB))
                                     {
                                         if (!oid2FieldList.ContainsKey(feloop.OID))
                                         {
-                                            oid2FieldList.Add(feloop.OID, new List<string>() { "GB" });
+                                            oid2FieldList.Add(feloop.OID, new List<string>() { GB });
                                         }
                                         else
                                         {
                                             // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                            if (!oid2FieldList[feloop.OID].Contains("GB"))
+                                            if (!oid2FieldList[feloop.OID].Contains(GB))
                                             {
-                                                oid2FieldList[feloop.OID].Add("GB");
+                                                oid2FieldList[feloop.OID].Add(GB);
                                             }
                                         }
                                     }
                                     else
                                     {
                                         string targetTYPE = domain[domain.Count - 4];
-                                        string realTYPE = GetFieldByName(feloop, "TYPE");
+                                        string realTYPE = GetFieldByName(feloop, TYPE);
 
                                         if (!targetTYPE.Equals(realTYPE))
                                         {
                                             if (!oid2FieldList.ContainsKey(feloop.OID))
                                             {
-                                                oid2FieldList.Add(feloop.OID, new List<string>() { "TYPE" });
+                                                oid2FieldList.Add(feloop.OID, new List<string>() { TYPE });
                                             }
                                             else
                                             {
                                                 // 如果已经存在该OID，检查是否已经包含了相同的字段名
-                                                if (!oid2FieldList[feloop.OID].Contains("TYPE"))
+                                                if (!oid2FieldList[feloop.OID].Contains(TYPE))
                                                 {
-                                                    oid2FieldList[feloop.OID].Add("TYPE");
+                                                    oid2FieldList[feloop.OID].Add(TYPE);
                                                 }
                                             }
                                         }
